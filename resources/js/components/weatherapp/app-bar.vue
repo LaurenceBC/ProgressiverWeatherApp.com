@@ -1,0 +1,129 @@
+<template>
+  <v-app-bar
+  color="#3282b8"
+    class="app-bar-background pb-4"
+    app
+    hide-on-scroll
+    scroll-threshold="10"
+
+  >
+    <v-btn icon small class="pl-1" @click="homeButtonClick">
+      <v-icon size="40" >mdi-home-circle</v-icon>
+    </v-btn>
+
+    <v-toolbar-title class="hidden-sm-and-down">Progressive Weather App</v-toolbar-title>
+
+    <app-bar-search></app-bar-search>
+
+    <!-- Logged in user menu. -->
+
+    <v-menu v-if="isUserLoggedIn" transition="slide-y-transition" bottom>
+      <template v-slot:activator="{ on }">
+        <v-avatar v-on="on" right color="green">
+          <img src alt />
+        </v-avatar>
+      </template>
+      <v-list>
+        <v-list-item @click="userMenuLogoutButtonClick">
+          <v-list-item-title>Logout</v-list-item-title>
+        </v-list-item>
+
+        <form id="logout-form" action="sdf" method="POST" style="display: none;">@csrf</form>
+      </v-list>
+    </v-menu>
+
+    <!-- Guest menu. -->
+    <div v-else-if="isUserLoggedIn === false">
+      <v-menu transition="slide-y-transition" bottom nudge-bottom="50" nudge-left="15">
+        <template v-slot:activator="{ on }">
+          <v-btn v-on="on" fab dark small color="white">
+            <v-icon color="primary">mdi-account-plus</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item @click="guestMenuLoginButtonClick">
+            <v-list-item-title>Login</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item @click="guestMenuRegisterButtonClick">
+            <v-list-item-title>Register</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </div>
+  </v-app-bar>
+</template>
+
+<script>
+//import VueBus from 'vue-bus';
+
+import AppBarSearch from "./app-bar-search.vue";
+
+export default {
+  mounted() {
+    console.log("Weather-app bar component mounted.");
+  },
+  components: {
+    AppBarSearch
+  },
+  props: {},
+  created() {
+    //Register event bus listener.
+    //this.$bus.on('weatherappSearch', this.searchWeather);
+  },
+
+  data() {
+    return {
+      //isUserLoggedIn: this.$store.state.loggedInStatus,
+      authUserData: this.$store.state.authUser
+      //authUserAvatarLocation: this.authUserData.authUserAvatarLocation
+    };
+  },
+  computed: {
+    isUserLoggedIn: function() {
+
+      return this.$store.getters.loggedInStatus;
+    }
+  },
+  methods: {
+    homeButtonClick() {
+      this.$router.push({ name: "home" }).catch(err => {});
+    },
+    //Guest menu methods
+    guestMenuLoginButtonClick() {
+      //Push login to router
+      this.$router.push({ name: "login" }).catch(err => {});
+    },
+    guestMenuRegisterButtonClick() {
+      this.$router.push({ name: "register" }).catch(err => {});
+    },
+
+    //Logged in user methods
+
+    userMenuLogoutButtonClick() {
+      axios
+        .post("/logout")
+        .then(res => {
+          console.log(res);
+          this.$store.commit("setLoggedInStatus", false);
+          this.$store.commit("authUser", null);
+           axios.defaults.headers.common['X-CSRF-TOKEN'] = response.data.csrf_token;
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
+  }
+};
+</script>
+
+<style scoped>
+
+.app-bar-background {
+
+/*
+    background: rgb(0,146,255);
+    background: linear-gradient(180deg, rgba(0,146,255,1) 53%, rgba(113,193,254,1) 90%, rgba(252,252,252,0.7763480392156863) 100%); */
+
+}
+</style>
