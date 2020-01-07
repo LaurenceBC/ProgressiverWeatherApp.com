@@ -81,9 +81,9 @@ class LoginController extends Controller
     protected function loggedOut(Request $request)
     {
         //Regenerate new csrf token to return.
-        $request->session()->regenerateToken();
+        //$request->session()->regenerateToken();
         //Retun ok and new csrf_token
-        return response()->json(['ok', 'csrf_token' => csrf_token()], 200);
+        return response()->json(['ok', 'csrf_token' => $request->session()->regenerateToken()], 200);
     }
 
 

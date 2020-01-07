@@ -1,12 +1,12 @@
 <template>
   <div>
     <weathercurrent
-      :currentWeatherData="localWeatherData.current"
+      :currentWeatherData="currentWeatherData"
       :onUsersHome="onHomePage"
       :userLoggedIn="userLoggedInStatus"
     ></weathercurrent>
 
-    <weatherforecasted :forecastedWeatherData="localWeatherData.forecasted"></weatherforecasted>
+    <weatherforecasted :forecastedWeatherData="forecastedWeatherData"></weatherforecasted>
   </div>
 </template>
 
@@ -36,6 +36,7 @@ export default {
   },
   props: {
     locationName: null,
+    gpsCoords: null,
     weatherData: null,
     // onUsersHomePage: false,
     userLoggedIn: false
@@ -46,7 +47,11 @@ export default {
       localWeatherData: null,
       userLoggedInStatus: this.$store.state.loggedInStatus || false,
       onHomePage: false,
-      fetchWetherRoute: "/weather"
+      fetchWetherRoute: "/weather",
+
+
+      currentWeatherData: null,
+      forecastedWeatherData: null,
     };
   },
   watch: {
@@ -61,10 +66,11 @@ export default {
     processWeatherData(data) {
       //Check if weather has userweather data with it
       if (data.userWeatherData) {
-          console.log('caught');
+
         this.onHomePage = data.userWeatherData.homepage;
       }
-      this.localWeatherData = data.weatherData;
+      this.currentWeatherData = data.weatherData.current;
+      this.forecastedWeatherData = data.weatherData.forecasted;
     },
 
     //Fetchs weather from the backend API by location name.

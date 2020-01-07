@@ -73,6 +73,7 @@ class WeatherAppController extends Controller
 
         $forecastedWeatherData = WeatherAPI::getForecastByCity($searchTerm);
 
+        //If a user is logged on try and fetch their weather data
         $usersData = Auth::check() ? $this->getUserDataForWeather(
             $currentWeatherData['coordinates']->lon,
             $currentWeatherData['coordinates']->lat

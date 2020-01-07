@@ -45,9 +45,9 @@ const router = new VueRouter({
 
 //HELP
 router.beforeEach((to, from, next) => {
-    console.log('the log in state is ' + store.getters.loggedInStatus);
-    if (to.matched.some(record => record.meta.notLoggedIn)) {
-        console.log("matched");
+
+    if (to.matched.some(record => record.meta.loggedIn)) {
+
         // this route requires auth, check if logged in
         // if not, redirect to login page.
         if (store.getters.loggedInStatus) {

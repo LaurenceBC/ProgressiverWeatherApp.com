@@ -3,6 +3,11 @@
   <div>
 
     <template v-if="!isLoggedIn">
+        <p class="title font-weight-bold text-center">ProgressiveWeatherApp.com a progressive web app for the weather.</p>
+
+       <p class="subtitle-1 text-center"> Type a location name in the search bar above</p>
+
+       <v-btn class="text-center">Search my location</v-btn>
       <weather></weather>
     </template>
 
@@ -45,6 +50,13 @@ export default {
     };
   },
   methods: {
+
+
+      lookupDeviceLocation() {
+
+
+
+      },
     getUsersHomePageWeather() {
 
         console.log('gettinghome')

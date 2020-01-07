@@ -168,13 +168,13 @@ __webpack_require__.r(__webpack_exports__);
     formSubmit: function formSubmit() {
       var _this = this;
 
-      var self = this;
       this.loginLoading = true;
-      axios.post(self.loginRoute, {
-        email: self.emailInputValue,
-        password: self.passwordInputValue
+      axios.post(this.loginRoute, {
+        email: this.emailInputValue,
+        password: this.passwordInputValue
       }).then(function (response) {
         if (response.status = 200) {
+          //Store auth user and set loggedInStatus
           _this.$store.commit("setAuthUser", response.data.authUser);
 
           _this.$store.commit("setLoggedInStatus", true); //Set axios csrf token

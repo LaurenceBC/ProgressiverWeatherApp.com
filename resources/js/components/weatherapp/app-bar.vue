@@ -106,8 +106,11 @@ export default {
         .then(response => {
 
           this.$store.commit("setLoggedInStatus", false);
-          this.$store.commit("authUser", null);
+          this.$store.commit("setAuthUser", null);
+
            axios.defaults.headers.common['X-CSRF-TOKEN'] = response.data.csrf_token;
+           axios.defaults.headers.common["X-CSRF-TOKEN"] = response.data.csrf_token;
+           this.$router.go();
         })
         .catch(err => {
           console.error(err);

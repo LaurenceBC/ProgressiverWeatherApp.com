@@ -30,6 +30,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 var weather = function weather() {
   return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./weather/weather.vue */ "./resources/js/components/weatherapp/weather/weather.vue"));
 };
@@ -55,6 +60,7 @@ var weather = function weather() {
     };
   },
   methods: {
+    lookupDeviceLocation: function lookupDeviceLocation() {},
     getUsersHomePageWeather: function getUsersHomePageWeather() {
       var _this = this;
 
@@ -89,7 +95,25 @@ var render = function() {
   return _c(
     "div",
     [
-      !_vm.isLoggedIn ? [_c("weather")] : _vm._e(),
+      !_vm.isLoggedIn
+        ? [
+            _c("p", { staticClass: "title font-weight-bold text-center" }, [
+              _vm._v(
+                "ProgressiveWeatherApp.com a progressive web app for the weather."
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "subtitle-1 text-center" }, [
+              _vm._v(" Type a location name in the search bar above")
+            ]),
+            _vm._v(" "),
+            _c("v-btn", { staticClass: "text-center" }, [
+              _vm._v("Search my location")
+            ]),
+            _vm._v(" "),
+            _c("weather")
+          ]
+        : _vm._e(),
       _vm._v(" "),
       _vm.isLoggedIn
         ? [
@@ -123,6 +147,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_vue_vue_type_template_id_31095806___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home.vue?vue&type=template&id=31095806& */ "./resources/js/components/weatherapp/home.vue?vue&type=template&id=31095806&");
 /* harmony import */ var _home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home.vue?vue&type=script&lang=js& */ "./resources/js/components/weatherapp/home.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
+/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
 
 
 
@@ -140,6 +167,12 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null
   
 )
+
+/* vuetify-loader */
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"]})
+
 
 /* hot reload */
 if (false) { var api; }

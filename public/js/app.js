@@ -2202,9 +2202,12 @@ __webpack_require__.r(__webpack_exports__);
       axios.post("/logout").then(function (response) {
         _this.$store.commit("setLoggedInStatus", false);
 
-        _this.$store.commit("authUser", null);
+        _this.$store.commit("setAuthUser", null);
 
         axios.defaults.headers.common['X-CSRF-TOKEN'] = response.data.csrf_token;
+        axios.defaults.headers.common["X-CSRF-TOKEN"] = response.data.csrf_token;
+
+        _this.$router.go();
       })["catch"](function (err) {
         console.error(err);
       });
@@ -88308,14 +88311,11 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 }); //HELP
 
 router.beforeEach(function (to, from, next) {
-  console.log('the log in state is ' + store.getters.loggedInStatus);
-
   if (to.matched.some(function (record) {
-    return record.meta.notLoggedIn;
+    return record.meta.loggedIn;
   })) {
-    console.log("matched"); // this route requires auth, check if logged in
+    // this route requires auth, check if logged in
     // if not, redirect to login page.
-
     if (store.getters.loggedInStatus) {
       console.log("matched userlogg");
       next("/home");
@@ -88699,7 +88699,7 @@ var routes = [// { path: '/home', component: Home },
   component: Login,
   name: 'login',
   meta: {
-    notLoggedIn: true
+    loggedIn: true
   }
 }, {
   path: '/register',

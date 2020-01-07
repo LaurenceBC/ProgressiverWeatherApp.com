@@ -12,7 +12,7 @@ const routes = [
         component: Login,
         name: 'login',
         meta:   {
-                    notLoggedIn: true
+                    loggedIn: true,
                 }
     },
     {

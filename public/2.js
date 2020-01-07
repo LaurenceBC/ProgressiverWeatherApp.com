@@ -321,6 +321,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {},
   props: {
     locationName: null,
+    gpsCoords: null,
     weatherData: null,
     // onUsersHomePage: false,
     userLoggedIn: false
@@ -330,7 +331,9 @@ __webpack_require__.r(__webpack_exports__);
       localWeatherData: null,
       userLoggedInStatus: this.$store.state.loggedInStatus || false,
       onHomePage: false,
-      fetchWetherRoute: "/weather"
+      fetchWetherRoute: "/weather",
+      currentWeatherData: null,
+      forecastedWeatherData: null
     };
   },
   watch: {
@@ -344,11 +347,11 @@ __webpack_require__.r(__webpack_exports__);
     processWeatherData: function processWeatherData(data) {
       //Check if weather has userweather data with it
       if (data.userWeatherData) {
-        console.log('caught');
         this.onHomePage = data.userWeatherData.homepage;
       }
 
-      this.localWeatherData = data.weatherData;
+      this.currentWeatherData = data.weatherData.current;
+      this.forecastedWeatherData = data.weatherData.forecasted;
     },
     //Fetchs weather from the backend API by location name.
     searchWeather: function searchWeather(locationName) {
@@ -939,14 +942,14 @@ var render = function() {
     [
       _c("weathercurrent", {
         attrs: {
-          currentWeatherData: _vm.localWeatherData.current,
+          currentWeatherData: _vm.currentWeatherData,
           onUsersHome: _vm.onHomePage,
           userLoggedIn: _vm.userLoggedInStatus
         }
       }),
       _vm._v(" "),
       _c("weatherforecasted", {
-        attrs: { forecastedWeatherData: _vm.localWeatherData.forecasted }
+        attrs: { forecastedWeatherData: _vm.forecastedWeatherData }
       })
     ],
     1

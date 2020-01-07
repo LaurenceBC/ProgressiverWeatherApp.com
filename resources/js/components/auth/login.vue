@@ -162,31 +162,29 @@ export default {
     },
     //Submits the form to laravel backend, none json
     formSubmit: function() {
-      var self = this;
+
 
       this.loginLoading = true;
 
       axios
-        .post(self.loginRoute, {
-          email: self.emailInputValue,
-          password: self.passwordInputValue
+        .post(this.loginRoute, {
+          email: this.emailInputValue,
+          password: this.passwordInputValue
         })
         .then(response => {
           if ((response.status = 200)) {
+            //Store auth user and set loggedInStatus
             this.$store.commit("setAuthUser", response.data.authUser);
             this.$store.commit("setLoggedInStatus", true);
             //Set axios csrf token
-            axios.defaults.headers.common["X-CSRF-TOKEN"] =
-              response.data.csrf_token;
+            axios.defaults.headers.common["X-CSRF-TOKEN"] = response.data.csrf_token;
             //Push route
             this.$router.push({ name: "home" }).catch(err => {});
           }
         })
         .catch(error => {
-
           this.errors = error.response.data.errors;
           this.errorAlertVisible = true;
-
           this.passwordInputValue = "";
           this.loginLoading = false;
         });
