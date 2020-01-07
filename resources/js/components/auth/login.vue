@@ -183,8 +183,6 @@ export default {
           }
         })
         .catch(error => {
-          console.log("Login error..");
-          console.log(error.response.data);
 
           this.errors = error.response.data.errors;
           this.errorAlertVisible = true;

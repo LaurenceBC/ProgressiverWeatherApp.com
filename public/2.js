@@ -305,21 +305,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("Weather component mounted.");
+
+    if (this.locationName) {
+      this.searchWeather(this.locationName);
+    } else if (this.weatherData) {
+      this.processWeatherData(this.weatherData);
+    } else {
+      this.searchWeather("taunton");
+    }
   },
   components: {
     weathercurrent: _partial_weather_current_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     weatherforecasted: _partial_weather_forecast_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  created: function created() {
-    //if no location name passed a prop or weatherData is null then load default location.
-    if (this.locationName) {
-      this.searchWeather(this.locationName);
-    } else if (!this.weatherData === null) {
-      this.processWeatherData(weatherData); // this.localWeatherData = weatherData
-    } else {
-      this.searchWeather("taunton");
-    }
-  },
+  created: function created() {},
   props: {
     locationName: null,
     weatherData: null,
@@ -345,6 +344,7 @@ __webpack_require__.r(__webpack_exports__);
     processWeatherData: function processWeatherData(data) {
       //Check if weather has userweather data with it
       if (data.userWeatherData) {
+        console.log('caught');
         this.onHomePage = data.userWeatherData.homepage;
       }
 

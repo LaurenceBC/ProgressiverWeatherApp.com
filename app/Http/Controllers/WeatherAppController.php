@@ -73,10 +73,10 @@ class WeatherAppController extends Controller
 
         $forecastedWeatherData = WeatherAPI::getForecastByCity($searchTerm);
 
-        $usersData = $this->getUserDataForWeather(
+        $usersData = Auth::check() ? $this->getUserDataForWeather(
             $currentWeatherData['coordinates']->lon,
             $currentWeatherData['coordinates']->lat
-        );
+        ) :  null;
 
         return response()->json(
             [
@@ -135,6 +135,7 @@ class WeatherAppController extends Controller
         //lookup usersweather with params and return it.
 
         $userWeather = UsersWeather::where([
+            ['users_id', Auth::user()->id],
             ['longitude', $longitude],
             ['latitude', $latitude]
         ])->get(['homepage'])->first();

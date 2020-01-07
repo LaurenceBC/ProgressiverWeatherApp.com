@@ -187,8 +187,6 @@ __webpack_require__.r(__webpack_exports__);
           })["catch"](function (err) {});
         }
       })["catch"](function (error) {
-        console.log("Login error..");
-        console.log(error.response.data);
         _this.errors = error.response.data.errors;
         _this.errorAlertVisible = true;
         _this.passwordInputValue = "";

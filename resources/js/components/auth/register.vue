@@ -7,7 +7,6 @@
           <!-- Register form. -->
           <v-form ref="registerForm" v-model="registerFormValid">
             <!-- Name input. -->
-
             <v-text-field
               clearable
               outlined
@@ -170,9 +169,7 @@ export default {
   data() {
     return {
 
-         registerRoute: this.ziggyRoute("register"),
-
-
+        registerRoute: this.ziggyRoute("register"),
       errors: "",
       errorAlertVisible: false,
       registerFormValid: false,
@@ -182,9 +179,7 @@ export default {
       showConfirmPasswordText: false,
 
       //Form data
-
       nameInputValue: "",
-
       emailInputValue: "",
       passwordInputValue: "",
       confirmPasswordInputValue: ""
@@ -206,8 +201,6 @@ export default {
     },
 
     registerButtonClick: function() {
-      //   this.$refs.registerForm.validate();
-
       if (this.registerFormValid) {
         this.formSubmit();
       }
@@ -232,13 +225,22 @@ export default {
         })
         .then(response => {
           console.log("got back: " + response);
+
+            if ((response.status = 200)) {
+            this.$store.commit("setAuthUser", response.data.authUser);
+            this.$store.commit("setLoggedInStatus", true);
+            //Set axios csrf token
+            axios.defaults.headers.common["X-CSRF-TOKEN"] =
+              response.data.csrf_token;
+            //Push route
+            this.$router.push(response.data.redirect).catch(err => {});
+          }
         })
         .catch(error => {
           console.log(error);
 
           this.errors = error.response.data.errors;
           this.errorAlertVisible = true;
-
           this.passwordInputValue = "";
           this.confirmPasswordInputValue = "";
           this.registerLoading = false;

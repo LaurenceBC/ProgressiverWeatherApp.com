@@ -18,6 +18,14 @@ import weatherforecasted from "./partial-weather-forecast.vue";
 export default {
   mounted() {
     console.log("Weather component mounted.");
+
+     if (this.locationName) {
+      this.searchWeather(this.locationName);
+    } else if (this.weatherData) {
+        this.processWeatherData(this.weatherData)
+    } else {
+        this.searchWeather("taunton");
+    }
   },
   components: {
     weathercurrent,
@@ -25,15 +33,6 @@ export default {
   },
 
   created() {
-    //if no location name passed a prop or weatherData is null then load default location.
-    if (this.locationName) {
-      this.searchWeather(this.locationName);
-    } else if (!this.weatherData === null) {
-        this.processWeatherData(weatherData)
-     // this.localWeatherData = weatherData
-    } else {
-        this.searchWeather("taunton");
-    }
   },
   props: {
     locationName: null,
@@ -62,6 +61,7 @@ export default {
     processWeatherData(data) {
       //Check if weather has userweather data with it
       if (data.userWeatherData) {
+          console.log('caught');
         this.onHomePage = data.userWeatherData.homepage;
       }
       this.localWeatherData = data.weatherData;

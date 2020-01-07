@@ -72,7 +72,7 @@ class LoginController extends Controller
     }
 
 
-       /**
+    /**
      * The user has logged out of the application.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -80,6 +80,8 @@ class LoginController extends Controller
      */
     protected function loggedOut(Request $request)
     {
+        //Regenerate new csrf token to return.
+        $request->session()->regenerateToken();
         //Retun ok and new csrf_token
         return response()->json(['ok', 'csrf_token' => csrf_token()], 200);
     }

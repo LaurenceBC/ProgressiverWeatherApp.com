@@ -1,7 +1,7 @@
 <template>
   <v-app-bar
   color="#3282b8"
-    class="app-bar-background pb-4"
+    class="pb-4"
     app
     hide-on-scroll
     scroll-threshold="10"
@@ -103,8 +103,8 @@ export default {
     userMenuLogoutButtonClick() {
       axios
         .post("/logout")
-        .then(res => {
-          console.log(res);
+        .then(response => {
+
           this.$store.commit("setLoggedInStatus", false);
           this.$store.commit("authUser", null);
            axios.defaults.headers.common['X-CSRF-TOKEN'] = response.data.csrf_token;
@@ -117,13 +117,3 @@ export default {
 };
 </script>
 
-<style scoped>
-
-.app-bar-background {
-
-/*
-    background: rgb(0,146,255);
-    background: linear-gradient(180deg, rgba(0,146,255,1) 53%, rgba(113,193,254,1) 90%, rgba(252,252,252,0.7763480392156863) 100%); */
-
-}
-</style>

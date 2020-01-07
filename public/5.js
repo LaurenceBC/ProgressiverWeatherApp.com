@@ -168,7 +168,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("Register box component mounted.");
@@ -206,7 +205,6 @@ __webpack_require__.r(__webpack_exports__);
       this.showConfirmPasswordText = !this.showConfirmPasswordText;
     },
     registerButtonClick: function registerButtonClick() {
-      //   this.$refs.registerForm.validate();
       if (this.registerFormValid) {
         this.formSubmit();
       }
@@ -228,6 +226,17 @@ __webpack_require__.r(__webpack_exports__);
         password_confirmation: self.confirmPasswordInputValue
       }).then(function (response) {
         console.log("got back: " + response);
+
+        if (response.status = 200) {
+          _this.$store.commit("setAuthUser", response.data.authUser);
+
+          _this.$store.commit("setLoggedInStatus", true); //Set axios csrf token
+
+
+          axios.defaults.headers.common["X-CSRF-TOKEN"] = response.data.csrf_token; //Push route
+
+          _this.$router.push(response.data.redirect)["catch"](function (err) {});
+        }
       })["catch"](function (error) {
         console.log(error);
         _this.errors = error.response.data.errors;

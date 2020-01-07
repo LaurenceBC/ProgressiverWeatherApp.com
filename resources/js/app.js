@@ -20,20 +20,12 @@ export const store = new Vuex.Store({
         setAuthUser(state, authUser) {
             state.authUser = authUser;
         },
-        // setWeatherData(state, weatherData) {
-        //     state.weatherData = weatherData;
-        // },
-        // setUsersWeatherData(state, usersWeatherData) {
-        //     state.usersWeatherData = usersWeatherData;
-        // },
         setLoggedInStatus(state, loggedInStatus) {
             state.loggedInStatus = loggedInStatus;
         }
     },
     getters: {
         authUser: state => state.authUser,
-        // weatherData: state => state.weatherData,
-        // usersWeatherData: state => state.usersWeatherData,
         loggedInStatus: state => state.loggedInStatus
     }
 });

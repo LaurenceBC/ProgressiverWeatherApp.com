@@ -77,8 +77,10 @@ class RegisterController extends Controller
 
 
 
-      /**
+    /**
      * OVERRIDE: The user has been registered.
+     *
+     * Return redirect parth and new csrf_token
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  mixed  $user
@@ -86,7 +88,9 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        //return json sucesss
-        return ['sdfTESSST'];
+        //return json sucesss and new csrf token
+        return response()->json(['redirect' =>  $this->redirectTo,
+                                 'csrf_token' => csrf_token(),
+                                    'authuser' => $user ], 200);
     }
 }
