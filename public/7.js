@@ -1,771 +1,275 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/register.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/register.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vuetify/src/styles/components/_selection-controls.sass":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/dist/cjs.js??ref--8-3!./node_modules/vuetify/src/styles/components/_selection-controls.sass ***!
+  \****************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/** Ripples */\n/** Elements */\n.theme--light.v-input--selection-controls.v-input--is-disabled:not(.v-input--indeterminate) .v-icon {\n  color: rgba(0, 0, 0, 0.26) !important;\n}\n\n.theme--dark.v-input--selection-controls.v-input--is-disabled:not(.v-input--indeterminate) .v-icon {\n  color: rgba(255, 255, 255, 0.3) !important;\n}\n\n.v-input--selection-controls {\n  margin-top: 16px;\n  padding-top: 4px;\n}\n.v-input--selection-controls .v-input__append-outer,\n.v-input--selection-controls .v-input__prepend-outer {\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.v-input--selection-controls .v-input__control {\n  -webkit-box-flex: 0;\n          flex-grow: 0;\n  width: auto;\n}\n.v-input--selection-controls:not(.v-input--hide-details) .v-input__slot {\n  margin-bottom: 12px;\n}\n.v-input--selection-controls__input {\n  color: inherit;\n  display: -webkit-inline-box;\n  display: inline-flex;\n  -webkit-box-flex: 0;\n          flex: 0 0 auto;\n  height: 24px;\n  position: relative;\n  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  -webkit-transition-property: color, -webkit-transform;\n  transition-property: color, -webkit-transform;\n  transition-property: color, transform;\n  transition-property: color, transform, -webkit-transform;\n  width: 24px;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.v-application--is-ltr .v-input--selection-controls__input {\n  margin-right: 8px;\n}\n.v-application--is-rtl .v-input--selection-controls__input {\n  margin-left: 8px;\n}\n.v-input--selection-controls__input input[role=checkbox],\n.v-input--selection-controls__input input[role=radio],\n.v-input--selection-controls__input input[role=switch] {\n  position: absolute;\n  opacity: 0;\n  width: 100%;\n  height: 100%;\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.v-input--selection-controls__input + .v-label {\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.v-input--selection-controls__ripple {\n  border-radius: 50%;\n  cursor: pointer;\n  height: 34px;\n  position: absolute;\n  -webkit-transition: inherit;\n  transition: inherit;\n  width: 34px;\n  left: -12px;\n  top: calc(50% - 24px);\n  margin: 7px;\n}\n.v-input--selection-controls__ripple:before {\n  border-radius: inherit;\n  bottom: 0;\n  content: \"\";\n  position: absolute;\n  opacity: 0.2;\n  left: 0;\n  right: 0;\n  top: 0;\n  -webkit-transform-origin: center center;\n          transform-origin: center center;\n  -webkit-transform: scale(0.2);\n          transform: scale(0.2);\n  -webkit-transition: inherit;\n  transition: inherit;\n}\n.v-input--selection-controls__ripple .v-ripple__container {\n  -webkit-transform: scale(1.2);\n          transform: scale(1.2);\n}\n.v-input--selection-controls.v-input--dense .v-input--selection-controls__ripple {\n  width: 28px;\n  height: 28px;\n  left: -11px;\n}\n.v-input--selection-controls.v-input--dense:not(.v-input--switch) .v-input--selection-controls__ripple {\n  top: calc(50% - 21px);\n}\n.v-input--selection-controls.v-input {\n  -webkit-box-flex: 0;\n          flex: 0 1 auto;\n}\n.v-input--selection-controls.v-input .v-label {\n  -webkit-box-align: center;\n          align-items: center;\n  display: -webkit-inline-box;\n  display: inline-flex;\n  top: 0;\n  height: auto;\n}\n.v-input--selection-controls.v-input--is-focused .v-input--selection-controls__ripple:before,\n.v-input--selection-controls .v-radio--is-focused .v-input--selection-controls__ripple:before {\n  background: currentColor;\n  opacity: 0.4;\n  -webkit-transform: scale(1.2);\n          transform: scale(1.2);\n}\n.v-input--selection-controls .v-input--selection-controls__input:hover .v-input--selection-controls__ripple:before {\n  background: currentColor;\n  -webkit-transform: scale(1.2);\n          transform: scale(1.2);\n  -webkit-transition: none;\n  transition: none;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/mixins/rippleable/index.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/vuetify/lib/mixins/rippleable/index.js ***!
+  \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log("Register box component mounted.");
+/* harmony import */ var _directives_ripple__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../directives/ripple */ "./node_modules/vuetify/lib/directives/ripple/index.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+// Directives
+ // Types
+
+
+/* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_1___default.a.extend({
+  name: 'rippleable',
+  directives: {
+    ripple: _directives_ripple__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: {},
-  data: function data() {
-    return {
-      registerRoute: this.ziggyRoute("register"),
-      errors: "",
-      errorAlertVisible: false,
-      registerFormValid: false,
-      formInputDisabled: false,
-      registerLoading: false,
-      showPasswordText: false,
-      showConfirmPasswordText: false,
-      //Form data
-      nameInputValue: "",
-      emailInputValue: "",
-      passwordInputValue: "",
-      confirmPasswordInputValue: ""
-    };
-  },
-  computed: {
-    validationErrors: function validationErrors() {
-      var errors = Object.values(this.errors);
-      errors = errors.flat();
-      return errors;
+  props: {
+    ripple: {
+      type: [Boolean, Object],
+      default: true
     }
   },
   methods: {
-    passwordVisible: function passwordVisible() {
-      this.showPasswordText = !this.showPasswordText;
-    },
-    confirmPasswordVisible: function confirmPasswordVisible() {
-      this.showConfirmPasswordText = !this.showConfirmPasswordText;
-    },
-    registerButtonClick: function registerButtonClick() {
-      //   this.$refs.registerForm.validate();
-      if (this.registerFormValid) {
-        this.formSubmit();
-      }
-    },
-    loginButtonClick: function loginButtonClick() {
-      this.$bus.emit("authenticator-change-component", "login");
-    },
-    //Submits the form to laravel backend, none json
-    formSubmit: function formSubmit() {
-      var _this = this;
-
-      var self = this;
-      axios.post(self.registerRoute, {
-        // email: self.emailInputValue,
-        // password: self.passwordInputValue
-        name: self.nameInputValue,
-        email: self.emailInputValue,
-        password: self.passwordInputValue,
-        password_confirmation: self.confirmPasswordInputValue
-      }).then(function (response) {
-        console.log("got back: " + response);
-      })["catch"](function (error) {
-        console.log(error);
-        _this.errors = error.response.data.errors;
-        _this.errorAlertVisible = true;
-        _this.passwordInputValue = "";
-        _this.confirmPasswordInputValue = "";
-        _this.registerLoading = false;
+    genRipple(data = {}) {
+      if (!this.ripple) return null;
+      data.staticClass = 'v-input--selection-controls__ripple';
+      data.directives = data.directives || [];
+      data.directives.push({
+        name: 'ripple',
+        value: {
+          center: true
+        }
       });
-    }
+      data.on = Object.assign({
+        click: this.onChange
+      }, this.$listeners);
+      return this.$createElement('div', data);
+    },
+
+    onChange() {}
+
   }
-});
+}));
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/register.vue?vue&type=template&id=e8907422&v-cloak=true&":
-/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/register.vue?vue&type=template&id=e8907422&v-cloak=true& ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var this$1 = this
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "v-card",
-    { attrs: { outlined: "" } },
-    [
-      _c(
-        "v-card-title",
-        { staticClass: "pb-0", attrs: { "max-width": "900px" } },
-        [_vm._v("Register")]
-      ),
-      _vm._v(" "),
-      _c(
-        "v-container",
-        [
-          _c(
-            "v-row",
-            [
-              _c(
-                "v-col",
-                { attrs: { cols: "12", md: "5" } },
-                [
-                  _c(
-                    "v-form",
-                    {
-                      ref: "registerForm",
-                      model: {
-                        value: _vm.registerFormValid,
-                        callback: function($$v) {
-                          _vm.registerFormValid = $$v
-                        },
-                        expression: "registerFormValid"
-                      }
-                    },
-                    [
-                      _c("v-text-field", {
-                        attrs: {
-                          clearable: "",
-                          outlined: "",
-                          label: "Name",
-                          required: "",
-                          "prepend-inner-icon": "mdi-rename-box",
-                          success: _vm.registerFormValid,
-                          disabled: _vm.formInputDisabled,
-                          rules: [
-                            function(v) {
-                              return (
-                                v.length <= 255 ||
-                                "Name must be less than 255 characters"
-                              )
-                            },
-                            function(v) {
-                              return (
-                                /^[a-z0-9\-]*$/.test(v) ||
-                                "Name must be alpha numeric"
-                              )
-                            },
-
-                            function(v) {
-                              return !!v || "A name is required"
-                            }
-                          ]
-                        },
-                        model: {
-                          value: _vm.nameInputValue,
-                          callback: function($$v) {
-                            _vm.nameInputValue = $$v
-                          },
-                          expression: "nameInputValue"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          "prepend-inner-icon": "mdi-account-box-outline",
-                          clearable: "",
-                          outlined: "",
-                          label: "Email",
-                          required: "",
-                          rules: [
-                            function(v) {
-                              return !!v || "Email address is required."
-                            },
-                            function(v) {
-                              return (
-                                /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
-                                  v
-                                ) || "E-mail must be valid."
-                              )
-                            }
-                          ],
-                          disabled: _vm.formInputDisabled,
-                          success: _vm.registerFormValid
-                        },
-                        model: {
-                          value: _vm.emailInputValue,
-                          callback: function($$v) {
-                            _vm.emailInputValue = $$v
-                          },
-                          expression: "emailInputValue"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          "prepend-inner-icon": "mdi-textbox-password",
-                          outlined: "",
-                          type: _vm.showPasswordText ? "text" : "password",
-                          label: "Password",
-                          rules: [
-                            function(v) {
-                              return !!v || "Password is required"
-                            },
-                            function(v) {
-                              return (
-                                v.length >= 8 ||
-                                "Password must be 8 charecters or more"
-                              )
-                            }
-                          ],
-                          required: "",
-                          disabled: _vm.formInputDisabled,
-                          success: _vm.registerFormValid
-                        },
-                        scopedSlots: _vm._u([
-                          {
-                            key: "append",
-                            fn: function() {
-                              return [
-                                _c(
-                                  "v-btn",
-                                  {
-                                    attrs: { icon: "", rounded: "", small: "" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.passwordVisible()
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("v-icon", [
-                                      _vm._v(
-                                        "\n                  " +
-                                          _vm._s(
-                                            _vm.showPasswordText
-                                              ? "mdi-eye"
-                                              : "mdi-eye-off"
-                                          ) +
-                                          "\n                "
-                                      )
-                                    ])
-                                  ],
-                                  1
-                                )
-                              ]
-                            },
-                            proxy: true
-                          }
-                        ]),
-                        model: {
-                          value: _vm.passwordInputValue,
-                          callback: function($$v) {
-                            _vm.passwordInputValue = $$v
-                          },
-                          expression: "passwordInputValue"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          "prepend-inner-icon": "mdi-textbox-password",
-                          outlined: "",
-                          type: _vm.showConfirmPasswordText
-                            ? "text"
-                            : "password",
-                          label: "Confirm Password",
-                          rules: [
-                            function(v) {
-                              return !!v || "Confirm password is required"
-                            },
-                            function(v) {
-                              return (
-                                v.length >= 8 ||
-                                "Password must be 8 charecters or more"
-                              )
-                            },
-                            function() {
-                              return (
-                                this$1.passwordInputValue ===
-                                  this$1.confirmPasswordInputValue ||
-                                "Password dosnt match"
-                              )
-                            }
-                          ],
-                          required: "",
-                          disabled: _vm.formInputDisabled,
-                          success: _vm.registerFormValid
-                        },
-                        scopedSlots: _vm._u([
-                          {
-                            key: "append",
-                            fn: function() {
-                              return [
-                                _c(
-                                  "v-btn",
-                                  {
-                                    attrs: { icon: "", rounded: "", small: "" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.passwordVisible()
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("v-icon", [
-                                      _vm._v(
-                                        "\n                  " +
-                                          _vm._s(
-                                            _vm.showConfirmPasswordText
-                                              ? "mdi-eye"
-                                              : "mdi-eye-off"
-                                          ) +
-                                          "\n                "
-                                      )
-                                    ])
-                                  ],
-                                  1
-                                )
-                              ]
-                            },
-                            proxy: true
-                          }
-                        ]),
-                        model: {
-                          value: _vm.confirmPasswordInputValue,
-                          callback: function($$v) {
-                            _vm.confirmPasswordInputValue = $$v
-                          },
-                          expression: "confirmPasswordInputValue"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "v-alert",
-                        {
-                          attrs: { type: "error", value: "", dismissible: "" },
-                          model: {
-                            value: _vm.errorAlertVisible,
-                            callback: function($$v) {
-                              _vm.errorAlertVisible = $$v
-                            },
-                            expression: "errorAlertVisible"
-                          }
-                        },
-                        _vm._l(_vm.validationErrors, function(value, key) {
-                          return _c("v-list-item", { key: key }, [
-                            _vm._v(_vm._s(value))
-                          ])
-                        }),
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-row",
-                        { staticClass: "pb-4 pr-4 pl-4" },
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: {
-                                loading: _vm.registerLoading ? true : false,
-                                disabled: _vm.registerFormValid ? false : true,
-                                block: "",
-                                color: "primary",
-                                large: ""
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.registerButtonClick()
-                                }
-                              }
-                            },
-                            [_vm._v("Register")]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-row",
-                        { staticClass: "pb-4 pr-2 pl-2" },
-                        [
-                          _c(
-                            "v-col",
-                            { attrs: { left: "" } },
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    small: "",
-                                    outlined: "",
-                                    block: "",
-                                    color: "primary"
-                                  }
-                                },
-                                [
-                                  _c("v-icon", [_vm._v("mdi-file-lock")]),
-                                  _vm._v(
-                                    "Forgot\n                password\n              "
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            { attrs: { right: "" } },
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    small: "",
-                                    outlined: "",
-                                    block: "",
-                                    color: "primary"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.loginButtonClick()
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("v-icon", [_vm._v("mdi-account-plus")]),
-                                  _vm._v("Login\n              ")
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _vm.$vuetify.breakpoint.smAndUp
-                ? _c(
-                    "v-col",
-                    { staticClass: "text-center", attrs: { cols: "2" } },
-                    [_c("v-divider", { attrs: { vertical: "" } })],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                { attrs: { cols: "12", md: "5" } },
-                [
-                  _c(
-                    "v-btn",
-                    {
-                      staticClass: "mb-2",
-                      attrs: {
-                        large: "",
-                        top: "",
-                        block: "",
-                        color: "light-green"
-                      }
-                    },
-                    [
-                      _c("v-icon", [_vm._v("mdi-google")]),
-                      _vm._v("Google\n        ")
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    { attrs: { large: "", top: "", block: "", color: "blue" } },
-                    [
-                      _c("v-icon", [_vm._v("mdi-facebook")]),
-                      _vm._v("Facebook\n        ")
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/auth/register.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/components/auth/register.vue ***!
-  \***************************************************/
+/***/ "./node_modules/vuetify/lib/mixins/selectable/index.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/vuetify/lib/mixins/selectable/index.js ***!
+  \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _register_vue_vue_type_template_id_e8907422_v_cloak_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./register.vue?vue&type=template&id=e8907422&v-cloak=true& */ "./resources/js/components/auth/register.vue?vue&type=template&id=e8907422&v-cloak=true&");
-/* harmony import */ var _register_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./register.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/register.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuetify_lib_components_VAlert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VAlert */ "./node_modules/vuetify/lib/components/VAlert/index.js");
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
-/* harmony import */ var vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VForm */ "./node_modules/vuetify/lib/components/VForm/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
-/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
+/* harmony import */ var _components_VInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/VInput */ "./node_modules/vuetify/lib/components/VInput/index.js");
+/* harmony import */ var _rippleable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../rippleable */ "./node_modules/vuetify/lib/mixins/rippleable/index.js");
+/* harmony import */ var _comparable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comparable */ "./node_modules/vuetify/lib/mixins/comparable/index.js");
+/* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/mixins */ "./node_modules/vuetify/lib/util/mixins.js");
+// Components
+ // Mixins
 
 
+ // Utilities
 
 
+/* @vue/component */
 
-/* normalize component */
+/* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_3__["default"])(_components_VInput__WEBPACK_IMPORTED_MODULE_0__["default"], _rippleable__WEBPACK_IMPORTED_MODULE_1__["default"], _comparable__WEBPACK_IMPORTED_MODULE_2__["default"]).extend({
+  name: 'selectable',
+  model: {
+    prop: 'inputValue',
+    event: 'change'
+  },
+  props: {
+    id: String,
+    inputValue: null,
+    falseValue: null,
+    trueValue: null,
+    multiple: {
+      type: Boolean,
+      default: null
+    },
+    label: String
+  },
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _register_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _register_vue_vue_type_template_id_e8907422_v_cloak_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _register_vue_vue_type_template_id_e8907422_v_cloak_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
+  data() {
+    return {
+      hasColor: this.inputValue,
+      lazyValue: this.inputValue
+    };
+  },
 
-/* vuetify-loader */
+  computed: {
+    computedColor() {
+      if (!this.isActive) return undefined;
+      if (this.color) return this.color;
+      if (this.isDark && !this.appIsDark) return 'white';
+      return 'accent';
+    },
 
+    isMultiple() {
+      return this.multiple === true || this.multiple === null && Array.isArray(this.internalValue);
+    },
 
+    isActive() {
+      const value = this.value;
+      const input = this.internalValue;
 
+      if (this.isMultiple) {
+        if (!Array.isArray(input)) return false;
+        return input.some(item => this.valueComparator(item, value));
+      }
 
+      if (this.trueValue === undefined || this.falseValue === undefined) {
+        return value ? this.valueComparator(value, input) : Boolean(input);
+      }
 
+      return this.valueComparator(input, this.trueValue);
+    },
 
+    isDirty() {
+      return this.isActive;
+    }
 
+  },
+  watch: {
+    inputValue(val) {
+      this.lazyValue = val;
+      this.hasColor = val;
+    }
 
+  },
+  methods: {
+    genLabel() {
+      const label = _components_VInput__WEBPACK_IMPORTED_MODULE_0__["default"].options.methods.genLabel.call(this);
+      if (!label) return label;
+      label.data.on = {
+        click: e => {
+          // Prevent label from
+          // causing the input
+          // to focus
+          e.preventDefault();
+          this.onChange();
+        }
+      };
+      return label;
+    },
 
+    genInput(type, attrs) {
+      return this.$createElement('input', {
+        attrs: Object.assign({
+          'aria-checked': this.isActive.toString(),
+          disabled: this.isDisabled,
+          id: this.computedId,
+          role: type,
+          type
+        }, attrs),
+        domProps: {
+          value: this.value,
+          checked: this.isActive
+        },
+        on: {
+          blur: this.onBlur,
+          change: this.onChange,
+          focus: this.onFocus,
+          keydown: this.onKeydown
+        },
+        ref: 'input'
+      });
+    },
 
+    onBlur() {
+      this.isFocused = false;
+    },
 
+    onChange() {
+      if (this.isDisabled) return;
+      const value = this.value;
+      let input = this.internalValue;
 
+      if (this.isMultiple) {
+        if (!Array.isArray(input)) {
+          input = [];
+        }
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VAlert: vuetify_lib_components_VAlert__WEBPACK_IMPORTED_MODULE_4__["VAlert"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__["VDivider"],VForm: vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_9__["VForm"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__["VIcon"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItem"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_12__["VTextField"]})
+        const length = input.length;
+        input = input.filter(item => !this.valueComparator(item, value));
 
+        if (input.length === length) {
+          input.push(value);
+        }
+      } else if (this.trueValue !== undefined && this.falseValue !== undefined) {
+        input = this.valueComparator(input, this.trueValue) ? this.falseValue : this.trueValue;
+      } else if (value) {
+        input = this.valueComparator(input, value) ? null : value;
+      } else {
+        input = !input;
+      }
 
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/auth/register.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+      this.validate(true, input);
+      this.internalValue = input;
+      this.hasColor = input;
+    },
+
+    onFocus() {
+      this.isFocused = true;
+    },
+
+    /** @abstract */
+    onKeydown(e) {}
+
+  }
+}));
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/register.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/auth/register.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_register_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./register.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/register.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_register_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/auth/register.vue?vue&type=template&id=e8907422&v-cloak=true&":
-/*!***********************************************************************************************!*\
-  !*** ./resources/js/components/auth/register.vue?vue&type=template&id=e8907422&v-cloak=true& ***!
-  \***********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_register_vue_vue_type_template_id_e8907422_v_cloak_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./register.vue?vue&type=template&id=e8907422&v-cloak=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/register.vue?vue&type=template&id=e8907422&v-cloak=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_register_vue_vue_type_template_id_e8907422_v_cloak_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_register_vue_vue_type_template_id_e8907422_v_cloak_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/***/ "./node_modules/vuetify/src/styles/components/_selection-controls.sass":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/vuetify/src/styles/components/_selection-controls.sass ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 
+var content = __webpack_require__(/*! !../../../../css-loader!../../../../postcss-loader/src??ref--8-2!../../../../sass-loader/dist/cjs.js??ref--8-3!./_selection-controls.sass */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vuetify/src/styles/components/_selection-controls.sass");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
 
 /***/ })
 

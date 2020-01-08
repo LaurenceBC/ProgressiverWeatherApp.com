@@ -32,7 +32,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 var weather = function weather() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./weather/weather.vue */ "./resources/js/components/weatherapp/weather/weather.vue"));
+  return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./weather/weather.vue */ "./resources/js/components/weatherapp/weather/weather.vue"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -64,7 +64,6 @@ var weather = function weather() {
     getUsersHomePageWeather: function getUsersHomePageWeather() {
       var _this = this;
 
-      console.log("gettinghome");
       axios.get("/user/weather/home").then(function (response) {
         _this.homepageWeatherData = response.data;
       })["catch"](function (err) {

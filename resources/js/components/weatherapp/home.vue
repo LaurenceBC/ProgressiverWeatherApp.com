@@ -53,7 +53,6 @@ export default {
     lookupDeviceLocation() {},
     //Get logged in users homepage weather.
     getUsersHomePageWeather() {
-      console.log("gettinghome");
       axios
         .get("/user/weather/home")
         .then(response => {
@@ -67,5 +66,3 @@ export default {
 };
 </script>
 
-<style>
-</style>

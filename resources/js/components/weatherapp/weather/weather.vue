@@ -1,19 +1,27 @@
 <template>
   <div>
+    <div v-if="!error">
+    <!-- Current weather partial. -->
     <weathercurrent
       :currentWeatherData="currentWeatherData"
       :onUsersHome="onHomePage"
       :userLoggedIn="userLoggedInStatus"
     ></weathercurrent>
 
+    <!-- Forecasted weather partial. -->
     <weatherforecasted :forecastedWeatherData="forecastedWeatherData"></weatherforecasted>
+    </div>
+    <weathererror v-if="error"></weathererror>
   </div>
 </template>
 
 <script>
 //Import weather components partials
-import weathercurrent from "./partial-weather-current.vue";
-import weatherforecasted from "./partial-weather-forecast.vue";
+const weathercurrent  = () => import('./partial-weather-current.vue');
+//import weathercurrent from "./partial-weather-current.vue";
+//import weatherforecasted from "./partial-weather-forecast.vue";
+const weatherforecasted   = () => import('./partial-weather-forecast.vue');
+import weathererror from "./error.vue";
 
 export default {
   mounted() {
@@ -29,7 +37,8 @@ export default {
   },
   components: {
     weathercurrent,
-    weatherforecasted
+    weatherforecasted,
+    weathererror,
   },
 
   created() {
@@ -48,25 +57,28 @@ export default {
       userLoggedInStatus: this.$store.state.loggedInStatus || false,
       onHomePage: false,
       fetchWetherRoute: "/weather",
+      error: false,
 
-
+      //Used for weather partials.
       currentWeatherData: null,
       forecastedWeatherData: null,
     };
   },
   watch: {
-    //Watch location name change for
+    //Watch location name prop change.
     locationName(newValue) {
       this.searchWeather(newValue);
     }
   },
 
   methods: {
-    //Processes the weather fetched by methods below.
+
     processWeatherData(data) {
+
+
+      this.error = null;
       //Check if weather has userweather data with it
       if (data.userWeatherData) {
-
         this.onHomePage = data.userWeatherData.homepage;
       }
       this.currentWeatherData = data.weatherData.current;
@@ -83,12 +95,11 @@ export default {
           this.processWeatherData(res.data);
         })
         .catch(err => {
-          console.error(err);
+
+         this.error = true;
+
         });
     }
   }
 };
 </script>
-
-<style>
-</style>

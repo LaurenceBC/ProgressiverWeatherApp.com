@@ -5,6 +5,7 @@ const Register = () => import('./components/auth/register.vue');
 const Home = () => import('./components/weatherapp/home.vue');
 const Weather = () => import('./components/weatherapp/weather/weather.vue');
 
+
 const routes = [
     // { path: '/home', component: Home },
     {
@@ -35,6 +36,7 @@ const routes = [
         name: 'weather',
         props: true,
     },
+
 
 
 ];

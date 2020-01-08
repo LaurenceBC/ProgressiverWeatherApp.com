@@ -14,6 +14,7 @@
     hide-details
     @keyup.enter="searchWeather"
     :search-input.sync="autocompleteInput"
+    ref="autocompleteinput"
   >
     <!-- <template v-slot:append>
                         <v-btn small icon>
@@ -39,10 +40,9 @@ export default {
 
   methods: {
     searchWeather() {
-    //   //Emit to weatherapp search term.
-    //   this.$bus.emit('weatherappSearch', this.autocompleteInput);
-
-    this.$router.push(this.autocompleteInput);
+   // this.$router.push(this.autocompleteInput);
+    this.$router.push({ path: 'weather', params: {locationName: 'test title' }});
+    this.$refs.autocompleteinput.blur();
 
     }
   }

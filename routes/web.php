@@ -51,11 +51,6 @@ Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallba
     });
 
 
-// Route::middleware('auth')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-
 
 
 //get logged in users homepage weather
@@ -66,6 +61,9 @@ Route::post('user/weather/home/add', 'UsersWeatherManagerController@addRemoveHom
 
 
 Route::post('/weather', 'WeatherAppController@fetchWeather')->name('weather.fetch');
+
+
+Route::get('/', 'WeatherAppController@index');
 
 //Must come last
 Route::get('/{any}', 'WeatherAppController@index')->where('any', '.*')->name('home');

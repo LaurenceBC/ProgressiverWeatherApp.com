@@ -2065,6 +2065,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2077,9 +2078,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     searchWeather: function searchWeather() {
-      //   //Emit to weatherapp search term.
-      //   this.$bus.emit('weatherappSearch', this.autocompleteInput);
-      this.$router.push(this.autocompleteInput);
+      // this.$router.push(this.autocompleteInput);
+      this.$router.push({
+        path: 'weather',
+        params: {
+          locationName: 'test title'
+        }
+      });
+      this.$refs.autocompleteinput.blur();
     }
   }
 });
@@ -22059,6 +22065,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("v-autocomplete", {
+    ref: "autocompleteinput",
     staticClass: "ml-3 mr-3",
     attrs: {
       outlined: "",
@@ -88678,7 +88685,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Login = function Login() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3), __webpack_require__.e(1), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/auth/login.vue */ "./resources/js/components/auth/login.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3), __webpack_require__.e(7), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/auth/login.vue */ "./resources/js/components/auth/login.vue"));
 };
 
 var Register = function Register() {
@@ -88690,7 +88697,7 @@ var Home = function Home() {
 };
 
 var Weather = function Weather() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/weatherapp/weather/weather.vue */ "./resources/js/components/weatherapp/weather/weather.vue"));
+  return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/weatherapp/weather/weather.vue */ "./resources/js/components/weatherapp/weather/weather.vue"));
 };
 
 var routes = [// { path: '/home', component: Home },
