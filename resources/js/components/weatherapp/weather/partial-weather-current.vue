@@ -176,6 +176,7 @@ export default {
 
             if ((res.status = 200)) {
               this.switchAddRemoveHomePageSuccess = true;
+
             }
           })
           .catch(err => {

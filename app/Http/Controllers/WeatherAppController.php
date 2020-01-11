@@ -15,8 +15,7 @@ use ProgressiveWeatherApp\UsersWeather;
 | Weather app controller
 |--------------------------------------------------------------------------
 |
-| The weather app controller retrieves weather from the API and returns it either
-| as a json response or to the weather app view.
+|
 |
 */
 
@@ -35,43 +34,78 @@ class WeatherAppController extends Controller
     {
 
         $usersHomePageWeather = UsersWeather::where(['users_id' => Auth::user()->id, 'homepage' => 1])
-                                            ->get(['homepage','favourite','longitude','latitude']);
+            ->get(['homepage', 'favourite', 'longitude', 'latitude']);
 
-            if ($usersHomePageWeather != null) {
+        if ($usersHomePageWeather != null) {
 
-                $tmp = array();
-                foreach ($usersHomePageWeather as $item)
-                {
-                    array_push($tmp, ['userWeatherData' => $item,
-                                     'weatherData' =>  $this->fetchWeatherDataByCoordinates($item->longitude, $item->latitude)
-                                    ]);
-                }
-                return response()->json($tmp,200);
+            $tmp = array();
+            foreach ($usersHomePageWeather as $item) {
+                array_push($tmp, [
+                    'userWeatherData' => $item,
+                    'weatherData' =>  $this->fetchWeatherDataByCoordinates($item->longitude, $item->latitude)
+                ]);
             }
-            return null;
+            return response()->json($tmp, 200);
+        }
+        return null;
     }
 
 
-    //Get request
-    public function fetchWeather(Request $request)
+    //Gets weather by geo coords
+    public function getWeatherByGeo(Request $request)
     {
-        //validate request
+
+            //Validate request.
 
 
-        $searchTerm = $request->input('locationName');
+            $geoCoords = ['longitude' => $request->input('longitude'), 'latitude' => $request->input('latitude')];
+
+
+            //Fetch data by coords (includes current and forecast).
+            $weatherData = $this->fetchWeatherDataByCoordinates($geoCoords['longitude'], $geoCoords['latitude']);
+
+            //Try and fetch user data for weather
+            $usersWeatherData = Auth::check() ? $this->getUserDataForWeather(
+                $weatherData['coordinates']->lon,
+                $weatherData['coordinates']->lat
+            ) :  null;
+
+
+            //Return json response.
+            return response()->json(['weatherData' => $weatherData,
+                                     'usersWeatherData' => $usersWeatherData]);
+
+
+
+
+    }
+
+
+    //Get weather by location name.
+    public function getWeatherByLocationName(Request $request)
+    {
+        //Validate request.
+        $request->validate([
+            'locationName' => 'required|max:255',
+        ]);
+
+
+        $locationName = $request->input('locationName');
 
         $currentWeatherData = null;
 
         try {
-            $currentWeatherData = WeatherAPI::getCurrentByCity($searchTerm);
+            $currentWeatherData = WeatherAPI::getCurrentByCity($locationName);
         } catch (Exception $e) {
+
+
 
             return response()->json([
                 'error' => 'location not found'
             ], 404);
         }
 
-        $forecastedWeatherData = WeatherAPI::getForecastByCity($searchTerm);
+        $forecastedWeatherData = WeatherAPI::getForecastByCity($locationName);
 
         //If a user is logged on try and fetch their weather data
         $usersData = Auth::check() ? $this->getUserDataForWeather(
@@ -89,12 +123,7 @@ class WeatherAppController extends Controller
             ],
             200
         );
-
     }
-
-
-
-
 
 
 
@@ -119,10 +148,10 @@ class WeatherAppController extends Controller
         $forecastedWeatherData = WeatherAPI::getForecastByCoordinates($longitude, $latitude);
 
         return
-        [
-            'current' => $currentWeatherData,
-            'forecasted' => $forecastedWeatherData
-        ];
+            [
+                'current' => $currentWeatherData,
+                'forecasted' => $forecastedWeatherData
+            ];
     }
 
 
@@ -147,6 +176,4 @@ class WeatherAppController extends Controller
             return $userWeather->toArray();
         }
     }
-
-
 }

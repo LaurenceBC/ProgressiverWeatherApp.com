@@ -30,6 +30,13 @@ const routes = [
         path: '/',
         component: Home,
     },
+    //Weather
+    {
+        path: '/mylocation',
+        component: Weather,
+        name: 'weather.mylocation',
+        props: true,
+    },
     {
         path: '/:locationName',
         component: Weather,

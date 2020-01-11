@@ -8,13 +8,14 @@
     hide-no-data
     prepend-inner-icon="search"
     background-color="white"
-    no-data-text="Not found"
     solo
     dense
     hide-details
     @keyup.enter="searchWeather"
+    @click:prepend-inner="searchWeather"
     :search-input.sync="autocompleteInput"
     ref="autocompleteinput"
+
   >
     <!-- <template v-slot:append>
                         <v-btn small icon>
@@ -41,7 +42,7 @@ export default {
   methods: {
     searchWeather() {
    // this.$router.push(this.autocompleteInput);
-    this.$router.push({ path: 'weather', params: {locationName: 'test title' }});
+    this.$router.push({ name: 'weather', params: {locationName: this.autocompleteInput }});
     this.$refs.autocompleteinput.blur();
 
     }

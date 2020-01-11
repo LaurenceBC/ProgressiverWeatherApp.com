@@ -102,6 +102,8 @@ trait WeatherAPI
             'q' => $City, 'units' => 'metric'
         ));
 
+
+
         return self::packageCurrentWeather($Response);
     }
 
@@ -121,8 +123,6 @@ trait WeatherAPI
 
     public static function getCurrentByCoordinates($lon, $lat)
     {
-
-
         $Response = self::getWeatherData(
             'weather',
         array('appid' => self::$apiKey, 'lat' => $lat, 'lon' => $lon, 'units' => 'metric'));
@@ -172,8 +172,6 @@ trait WeatherAPI
                     'direction' => $item->wind->deg
                 ],
                 'icon' => self::$mdiIcons[$item->weather[0]->icon] ?? null
-
-
 
             ]);
         }

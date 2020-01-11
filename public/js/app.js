@@ -2066,6 +2066,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2080,9 +2081,9 @@ __webpack_require__.r(__webpack_exports__);
     searchWeather: function searchWeather() {
       // this.$router.push(this.autocompleteInput);
       this.$router.push({
-        path: 'weather',
+        name: 'weather',
         params: {
-          locationName: 'test title'
+          locationName: this.autocompleteInput
         }
       });
       this.$refs.autocompleteinput.blur();
@@ -2102,11 +2103,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_bar_search_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app-bar-search.vue */ "./resources/js/components/weatherapp/app-bar-search.vue");
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2210,8 +2206,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$store.commit("setAuthUser", null);
 
-        axios.defaults.headers.common['X-CSRF-TOKEN'] = response.data.csrf_token;
-        axios.defaults.headers.common["X-CSRF-TOKEN"] = response.data.csrf_token;
+        axios.defaults.headers.common["X-CSRF-TOKEN"] = response.data.csrf_token; //Refresh page
 
         _this.$router.go();
       })["catch"](function (err) {
@@ -22075,7 +22070,6 @@ var render = function() {
       "hide-no-data": "",
       "prepend-inner-icon": "search",
       "background-color": "white",
-      "no-data-text": "Not found",
       solo: "",
       dense: "",
       "hide-details": "",
@@ -22091,6 +22085,7 @@ var render = function() {
         }
         return _vm.searchWeather($event)
       },
+      "click:prepend-inner": _vm.searchWeather,
       "update:searchInput": function($event) {
         _vm.autocompleteInput = $event
       },
@@ -22166,7 +22161,14 @@ var render = function() {
                         _c(
                           "v-avatar",
                           _vm._g({ attrs: { right: "", color: "green" } }, on),
-                          [_c("img", { attrs: { src: "", alt: "" } })]
+                          [
+                            _c("img", {
+                              attrs: {
+                                src: _vm.authUserData.avatar || null,
+                                alt: "Avatar"
+                              }
+                            })
+                          ]
                         )
                       ]
                     }
@@ -22174,7 +22176,7 @@ var render = function() {
                 ],
                 null,
                 false,
-                3196218901
+                2933651209
               )
             },
             [
@@ -88685,19 +88687,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Login = function Login() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3), __webpack_require__.e(7), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/auth/login.vue */ "./resources/js/components/auth/login.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3), __webpack_require__.e(4), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/auth/login.vue */ "./resources/js/components/auth/login.vue"));
 };
 
 var Register = function Register() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/auth/register.vue */ "./resources/js/components/auth/register.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./components/auth/register.vue */ "./resources/js/components/auth/register.vue"));
 };
 
 var Home = function Home() {
-  return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/weatherapp/home.vue */ "./resources/js/components/weatherapp/home.vue"));
+  return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./components/weatherapp/home.vue */ "./resources/js/components/weatherapp/home.vue"));
 };
 
 var Weather = function Weather() {
-  return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/weatherapp/weather/weather.vue */ "./resources/js/components/weatherapp/weather/weather.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/weatherapp/weather/weather.vue */ "./resources/js/components/weatherapp/weather/weather.vue"));
 };
 
 var routes = [// { path: '/home', component: Home },
@@ -88719,6 +88721,12 @@ var routes = [// { path: '/home', component: Home },
 }, {
   path: '/',
   component: Home
+}, //Weather
+{
+  path: '/mylocation',
+  component: Weather,
+  name: 'weather.mylocation',
+  props: true
 }, {
   path: '/:locationName',
   component: Weather,

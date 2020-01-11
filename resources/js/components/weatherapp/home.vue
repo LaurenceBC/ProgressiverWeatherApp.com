@@ -1,18 +1,22 @@
-
 <template>
   <div>
     <template v-if="!isLoggedIn">
+      <p class="title font-weight-bold text-center">ProgressiveWeatherApp.com</p>
+
+      <p class="subtitle-1 text-center">A progressive web app for the weather.</p>
+
       <p
-        class="title font-weight-bold text-center"
-      >ProgressiveWeatherApp.com a progressive web app for the weather.</p>
-
-      <p class="subtitle-1 text-center">Type a location name in the search bar above</p>
-      <!-- <v-btn class="text-center">Search my location</v-btn> -->
-
+        class="subtitle-2 text-center"
+      >Type a location name in the search bar above, or click the locate me button below.</p>
+      <div class="text-center">
+        <v-btn @click="showDeviceLocationWeather">
+          <v-icon left>mdi-crosshairs-gps</v-icon>Locate me
+        </v-btn>
+      </div>
     </template>
 
     <template v-if="isLoggedIn">
-      <p class="title text-center">Hi NAME#, here's your homepage weather.</p>
+      <p class="title text-center">Hi, here's your homepage weather.</p>
 
       <weather v-for="(item, index) in homepageWeatherData" :key="index" :weatherData="item"></weather>
     </template>
@@ -32,13 +36,7 @@ export default {
       this.getUsersHomePageWeather();
     }
   },
-  created() {
-    //try and fetch homepage weather
-    // if (this.isLoggedIn) {
-    //   console.log("getting");
-    //   this.getUsersHomePageWeather();
-    // }
-  },
+
   components: {
     weather
   },
@@ -47,10 +45,12 @@ export default {
     return {
       isLoggedIn: this.$store.state.loggedInStatus,
       homepageWeatherData: null
+
+      //User data
     };
   },
   methods: {
-    lookupDeviceLocation() {},
+
     //Get logged in users homepage weather.
     getUsersHomePageWeather() {
       axios
@@ -61,7 +61,17 @@ export default {
         .catch(err => {
           console.error(err);
         });
-    }
+    },
+
+
+      //Get and show device location.
+    showDeviceLocationWeather() {
+
+        this.$router.push({ name: 'weather.mylocation', params: {myLocation: true }});
+    },
+
+
+
   }
 };
 </script>

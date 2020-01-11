@@ -96,9 +96,9 @@
           <v-btn large top block color="light-green" class="mb-2" href="/login/redirect/google">
             <v-icon>mdi-google</v-icon>Google
           </v-btn>
-          <v-btn large top block color="blue">
+          <!-- <v-btn large top block color="blue">
             <v-icon>mdi-facebook</v-icon>Facebook
-          </v-btn>
+          </v-btn> -->
         </v-col>
       </v-row>
     </v-container>

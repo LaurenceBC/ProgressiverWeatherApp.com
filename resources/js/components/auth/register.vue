@@ -102,7 +102,6 @@
 
             <!-- Alert box. -->
             <v-alert type="error" value dismissible v-model="errorAlertVisible">
-              <!-- {{ errors.message }} -->
               <v-list-item v-for="(value, key) in  validationErrors" v-bind:key="key">{{value}}</v-list-item>
             </v-alert>
 
@@ -137,8 +136,7 @@
 
     <v-col cols="2" v-if="$vuetify.breakpoint.smAndUp" class="text-center">
           <!-- Login & social login divider -->
-          <!-- <v-flex xs v-if="$vuetify.breakpoint.smAndUp" class="ml-4 mr-4">
-          <v-layout justify-center fill-height>-->
+
           <v-divider vertical></v-divider>
         </v-col>
 
@@ -148,9 +146,9 @@
           <v-btn large top block color="light-green" class="mb-2">
             <v-icon>mdi-google</v-icon>Google
           </v-btn>
-          <v-btn large top block color="blue">
+          <!-- <v-btn large top block color="blue">
             <v-icon>mdi-facebook</v-icon>Facebook
-          </v-btn>
+          </v-btn> -->
         </v-col>
       </v-row>
     </v-container>

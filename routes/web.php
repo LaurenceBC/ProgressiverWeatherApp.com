@@ -56,14 +56,15 @@ Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallba
 //get logged in users homepage weather
 Route::get('/user/weather/home', 'WeatherAppController@getUsersHomePageWeatherData')->name('user.weather.home');
 
-//addremoveweather home
+//addremoveweather home.
 Route::post('user/weather/home/add', 'UsersWeatherManagerController@addRemoveHome')->name('user.weather.home.add');
 
 
-Route::post('/weather', 'WeatherAppController@fetchWeather')->name('weather.fetch');
+//get Weather routes.
+Route::post('/weather', 'WeatherAppController@getWeatherByLocationName')->name('weather.get.location');
+Route::post('/weather/geo', 'WeatherAppController@getWeatherByGeo')->name('weather.get.geo');
 
 
 Route::get('/', 'WeatherAppController@index');
-
 //Must come last
 Route::get('/{any}', 'WeatherAppController@index')->where('any', '.*')->name('home');

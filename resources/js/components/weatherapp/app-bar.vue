@@ -1,26 +1,21 @@
 <template>
-  <v-app-bar
-  color="#3282b8"
-    class="pb-4"
-    app
-    hide-on-scroll
-    scroll-threshold="10"
-
-  >
+  <v-app-bar color="#3282b8" class="pb-4" app hide-on-scroll scroll-threshold="10">
+    <!-- Home icon. -->
     <v-btn icon small class="pl-1" @click="homeButtonClick">
-      <v-icon size="40" >mdi-home-circle</v-icon>
+      <v-icon size="40">mdi-home-circle</v-icon>
     </v-btn>
 
+    <!-- App bar title. -->
     <v-toolbar-title class="hidden-sm-and-down">Progressive Weather App</v-toolbar-title>
 
+    <!-- Weather search bar. -->
     <app-bar-search></app-bar-search>
 
     <!-- Logged in user menu. -->
-
     <v-menu v-if="isUserLoggedIn" transition="slide-y-transition" bottom>
       <template v-slot:activator="{ on }">
         <v-avatar v-on="on" right color="green">
-          <img src alt />
+          <img :src="authUserData.avatar || null" alt="Avatar" />
         </v-avatar>
       </template>
       <v-list>
@@ -81,7 +76,6 @@ export default {
   },
   computed: {
     isUserLoggedIn: function() {
-
       return this.$store.getters.loggedInStatus;
     }
   },
@@ -104,13 +98,12 @@ export default {
       axios
         .post("/logout")
         .then(response => {
-
           this.$store.commit("setLoggedInStatus", false);
           this.$store.commit("setAuthUser", null);
-
-           axios.defaults.headers.common['X-CSRF-TOKEN'] = response.data.csrf_token;
-           axios.defaults.headers.common["X-CSRF-TOKEN"] = response.data.csrf_token;
-           this.$router.go();
+          axios.defaults.headers.common["X-CSRF-TOKEN"] =
+            response.data.csrf_token;
+            //Refresh page
+          this.$router.go();
         })
         .catch(err => {
           console.error(err);
