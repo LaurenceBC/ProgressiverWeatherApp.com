@@ -2168,15 +2168,17 @@ __webpack_require__.r(__webpack_exports__);
     //this.$bus.on('weatherappSearch', this.searchWeather);
   },
   data: function data() {
-    return {
-      //isUserLoggedIn: this.$store.state.loggedInStatus,
-      authUserData: this.$store.state.authUser //authUserAvatarLocation: this.authUserData.authUserAvatarLocation
-
+    return {//isUserLoggedIn: this.$store.state.loggedInStatus,
+      // authUserData: this.$store.state.authUser
+      //authUserAvatarLocation: this.authUserData.authUserAvatarLocation
     };
   },
   computed: {
     isUserLoggedIn: function isUserLoggedIn() {
       return this.$store.getters.loggedInStatus;
+    },
+    authUserData: function authUserData() {
+      return this.$store.getters.authUser;
     }
   },
   methods: {
@@ -88287,8 +88289,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
 var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   state: {
     authUser: null,
-    // weatherData: null,
-    // usersWeatherData: null,
     loggedInStatus: false
   },
   mutations: {

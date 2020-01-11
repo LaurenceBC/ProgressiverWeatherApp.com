@@ -70,13 +70,16 @@ export default {
   data() {
     return {
       //isUserLoggedIn: this.$store.state.loggedInStatus,
-      authUserData: this.$store.state.authUser
+     // authUserData: this.$store.state.authUser
       //authUserAvatarLocation: this.authUserData.authUserAvatarLocation
     };
   },
   computed: {
     isUserLoggedIn: function() {
-      return this.$store.getters.loggedInStatus;
+        return this.$store.getters.loggedInStatus;
+    },
+    authUserData: function() {
+        return this.$store.getters.authUser;
     }
   },
   methods: {

@@ -102,7 +102,17 @@
         </v-col>
       </v-row>
     </v-container>
+
+    <v-container v-if="loginSuccess">
+        <v-card outlined>
+    <v-card-title class="pb-0">Login</v-card-title>
+        </v-card>
+    </v-container>
   </v-card>
+
+
+
+
 </template>
 
 <script>
@@ -121,6 +131,7 @@ export default {
       errors: "",
       errorAlertVisible: false,
       loginLoading: false,
+      loginSuccess: false,
 
       showpasswordtext: false,
       formInputDisabled: false,
@@ -179,7 +190,8 @@ export default {
             //Set axios csrf token
             axios.defaults.headers.common["X-CSRF-TOKEN"] = response.data.csrf_token;
             //Push route
-            this.$router.push({ name: "home" }).catch(err => {});
+
+           this.$router.push({ name: "home" }).catch(err => {});
           }
         })
         .catch(error => {
@@ -192,3 +204,9 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+
+
+</style>

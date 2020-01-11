@@ -12,8 +12,6 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         authUser: null,
-        // weatherData: null,
-        // usersWeatherData: null,
         loggedInStatus: false
     },
     mutations: {
