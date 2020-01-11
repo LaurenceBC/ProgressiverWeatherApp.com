@@ -12,7 +12,7 @@
     <app-bar-search></app-bar-search>
 
     <!-- Logged in user menu. -->
-    <v-menu v-if="isUserLoggedIn" transition="slide-y-transition" bottom>
+    <v-menu v-if="isUserLoggedIn" transition="slide-y-transition" bottom nudge-bottom="50" nudge-left="15">
       <template v-slot:activator="{ on }">
         <v-avatar v-on="on" right color="green">
           <img :src="authUserData.avatar || null" alt="Avatar" />
@@ -62,18 +62,7 @@ export default {
     AppBarSearch
   },
   props: {},
-  created() {
-    //Register event bus listener.
-    //this.$bus.on('weatherappSearch', this.searchWeather);
-  },
-
-  data() {
-    return {
-      //isUserLoggedIn: this.$store.state.loggedInStatus,
-     // authUserData: this.$store.state.authUser
-      //authUserAvatarLocation: this.authUserData.authUserAvatarLocation
-    };
-  },
+  data() {return {};},
   computed: {
     isUserLoggedIn: function() {
         return this.$store.getters.loggedInStatus;

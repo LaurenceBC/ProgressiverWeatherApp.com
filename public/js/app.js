@@ -2164,14 +2164,8 @@ __webpack_require__.r(__webpack_exports__);
     AppBarSearch: _app_bar_search_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {},
-  created: function created() {//Register event bus listener.
-    //this.$bus.on('weatherappSearch', this.searchWeather);
-  },
   data: function data() {
-    return {//isUserLoggedIn: this.$store.state.loggedInStatus,
-      // authUserData: this.$store.state.authUser
-      //authUserAvatarLocation: this.authUserData.authUserAvatarLocation
-    };
+    return {};
   },
   computed: {
     isUserLoggedIn: function isUserLoggedIn() {
@@ -22152,7 +22146,12 @@ var render = function() {
         ? _c(
             "v-menu",
             {
-              attrs: { transition: "slide-y-transition", bottom: "" },
+              attrs: {
+                transition: "slide-y-transition",
+                bottom: "",
+                "nudge-bottom": "50",
+                "nudge-left": "15"
+              },
               scopedSlots: _vm._u(
                 [
                   {
