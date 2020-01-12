@@ -12,6 +12,7 @@
               outlined
               label="Email"
               required
+              validate-on-blur
               :rules="[ v => !!v || 'Email address is required.',
                         v => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid.']"
               :disabled="formInputDisabled"
@@ -98,21 +99,17 @@
           </v-btn>
           <!-- <v-btn large top block color="blue">
             <v-icon>mdi-facebook</v-icon>Facebook
-          </v-btn> -->
+          </v-btn>-->
         </v-col>
       </v-row>
     </v-container>
 
     <v-container v-if="loginSuccess">
-        <v-card outlined>
-    <v-card-title class="pb-0">Login</v-card-title>
-        </v-card>
+      <v-card outlined>
+        <v-card-title class="pb-0">Login</v-card-title>
+      </v-card>
     </v-container>
   </v-card>
-
-
-
-
 </template>
 
 <script>
@@ -155,7 +152,7 @@ export default {
   },
   methods: {
     registerButtonClick: function() {
-      //   this.$bus.emit("authenticator-change-component", "register");
+      this.$router.push({ name: "register" }).catch(err => {});
     },
     passwordVisible: function() {
       this.showpasswordtext = !this.showpasswordtext;
@@ -173,8 +170,6 @@ export default {
     },
     //Submits the form to laravel backend, none json
     formSubmit: function() {
-
-
       this.loginLoading = true;
 
       axios
@@ -188,10 +183,11 @@ export default {
             this.$store.commit("setAuthUser", response.data.authUser);
             this.$store.commit("setLoggedInStatus", true);
             //Set axios csrf token
-            axios.defaults.headers.common["X-CSRF-TOKEN"] = response.data.csrf_token;
+            axios.defaults.headers.common["X-CSRF-TOKEN"] =
+              response.data.csrf_token;
             //Push route
 
-           this.$router.push({ name: "home" }).catch(err => {});
+            this.$router.push({ name: "home" }).catch(err => {});
           }
         })
         .catch(error => {
@@ -207,6 +203,4 @@ export default {
 
 
 <style scoped>
-
-
 </style>

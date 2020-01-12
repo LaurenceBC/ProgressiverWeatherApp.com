@@ -166,6 +166,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("Register box component mounted.");
@@ -208,23 +210,21 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     loginButtonClick: function loginButtonClick() {
-      this.$bus.emit("authenticator-change-component", "login");
+      this.$router.push({
+        name: "login"
+      })["catch"](function (err) {});
     },
     //Submits the form to laravel backend, none json
     formSubmit: function formSubmit() {
       var _this = this;
 
       var self = this;
-      axios.post(self.registerRoute, {
-        // email: self.emailInputValue,
-        // password: self.passwordInputValue
-        name: self.nameInputValue,
-        email: self.emailInputValue,
-        password: self.passwordInputValue,
-        password_confirmation: self.confirmPasswordInputValue
+      axios.post(this.registerRoute, {
+        name: this.nameInputValue,
+        email: this.emailInputValue,
+        password: this.passwordInputValue,
+        password_confirmation: this.confirmPasswordInputValue
       }).then(function (response) {
-        console.log("got back: " + response);
-
         if (response.status = 200) {
           _this.$store.commit("setAuthUser", response.data.authUser);
 
@@ -236,7 +236,6 @@ __webpack_require__.r(__webpack_exports__);
           _this.$router.push(response.data.redirect)["catch"](function (err) {});
         }
       })["catch"](function (error) {
-        console.log(error);
         _this.errors = error.response.data.errors;
         _this.errorAlertVisible = true;
         _this.passwordInputValue = "";
@@ -305,6 +304,7 @@ var render = function() {
                           label: "Name",
                           required: "",
                           "prepend-inner-icon": "mdi-rename-box",
+                          "validate-on-blur": "",
                           success: _vm.registerFormValid,
                           disabled: _vm.formInputDisabled,
                           rules: [
@@ -316,8 +316,8 @@ var render = function() {
                             },
                             function(v) {
                               return (
-                                /^[a-z0-9\-]*$/.test(v) ||
-                                "Name must be alpha numeric"
+                                /^[a-z0-9A-Z\-]*$/.test(v) ||
+                                "Name should only contain alphanumeric"
                               )
                             },
 
@@ -342,6 +342,7 @@ var render = function() {
                           outlined: "",
                           label: "Email",
                           required: "",
+                          "validate-on-blur": "",
                           rules: [
                             function(v) {
                               return !!v || "Email address is required."
@@ -372,6 +373,7 @@ var render = function() {
                           outlined: "",
                           type: _vm.showPasswordText ? "text" : "password",
                           label: "Password",
+                          "validate-on-blur": "",
                           rules: [
                             function(v) {
                               return !!v || "Password is required"
@@ -443,17 +445,11 @@ var render = function() {
                             function(v) {
                               return !!v || "Confirm password is required"
                             },
-                            function(v) {
-                              return (
-                                v.length >= 8 ||
-                                "Password must be 8 charecters or more"
-                              )
-                            },
                             function() {
                               return (
                                 this$1.passwordInputValue ===
                                   this$1.confirmPasswordInputValue ||
-                                "Password dosnt match"
+                                "Passwords do match"
                               )
                             }
                           ],

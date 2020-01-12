@@ -2,7 +2,7 @@
   <v-card outlined>
     <v-card-title max-width="900px" class="pb-0">Register</v-card-title>
     <v-container>
-     <v-row>
+      <v-row>
         <v-col cols="12" md="5">
           <!-- Register form. -->
           <v-form ref="registerForm" v-model="registerFormValid">
@@ -14,11 +14,11 @@
               required
               prepend-inner-icon="mdi-rename-box"
               v-model="nameInputValue"
-
+              validate-on-blur
               :success="registerFormValid"
               :disabled="formInputDisabled"
               :rules="[v => v.length <= 255 || 'Name must be less than 255 characters',
-                       v => /^[a-z0-9\-]*$/.test(v) || 'Name must be alpha numeric',
+                       v => /^[a-z0-9A-Z\-]*$/.test(v) || 'Name should only contain alphanumeric',
 
                                 v => !!v || 'A name is required',
 
@@ -32,6 +32,7 @@
               outlined
               label="Email"
               required
+              validate-on-blur
               :rules="[
 
                                 v => !!v || 'Email address is required.',
@@ -53,6 +54,7 @@
               outlined
               :type="showPasswordText ? 'text' : 'password'"
               label="Password"
+              validate-on-blur
               :rules="[v => !!v || 'Password is required', v => v.length >= 8 || 'Password must be 8 charecters or more']"
               required
               :disabled="formInputDisabled"
@@ -79,8 +81,8 @@
               outlined
               :type="showConfirmPasswordText ? 'text' : 'password'"
               label="Confirm Password"
-              :rules="[v => !!v || 'Confirm password is required', v => v.length >= 8 || 'Password must be 8 charecters or more',
-               () => (this.passwordInputValue === this.confirmPasswordInputValue) || 'Password dosnt match']
+              :rules="[v => !!v || 'Confirm password is required',
+               () => (this.passwordInputValue === this.confirmPasswordInputValue) || 'Passwords do match']
               "
               required
               :disabled="formInputDisabled"
@@ -134,7 +136,7 @@
           </v-form>
         </v-col>
 
-    <v-col cols="2" v-if="$vuetify.breakpoint.smAndUp" class="text-center">
+        <v-col cols="2" v-if="$vuetify.breakpoint.smAndUp" class="text-center">
           <!-- Login & social login divider -->
 
           <v-divider vertical></v-divider>
@@ -148,7 +150,7 @@
           </v-btn>
           <!-- <v-btn large top block color="blue">
             <v-icon>mdi-facebook</v-icon>Facebook
-          </v-btn> -->
+          </v-btn>-->
         </v-col>
       </v-row>
     </v-container>
@@ -160,14 +162,11 @@ export default {
   mounted() {
     console.log("Register box component mounted.");
   },
-  props: {
-
-  },
+  props: {},
 
   data() {
     return {
-
-        registerRoute: this.ziggyRoute("register"),
+      registerRoute: this.ziggyRoute("register"),
       errors: "",
       errorAlertVisible: false,
       registerFormValid: false,
@@ -205,7 +204,7 @@ export default {
     },
 
     loginButtonClick: function() {
-      this.$bus.emit("authenticator-change-component", "login");
+      this.$router.push({ name: "login" }).catch(err => {});
     },
 
     //Submits the form to laravel backend, none json
@@ -213,18 +212,16 @@ export default {
       var self = this;
 
       axios
-        .post(self.registerRoute, {
-          // email: self.emailInputValue,
-          // password: self.passwordInputValue
-          name: self.nameInputValue,
-          email: self.emailInputValue,
-          password: self.passwordInputValue,
-          password_confirmation: self.confirmPasswordInputValue
+        .post(this.registerRoute, {
+          name: this.nameInputValue,
+          email: this.emailInputValue,
+          password: this.passwordInputValue,
+          password_confirmation: this.confirmPasswordInputValue
         })
         .then(response => {
-          console.log("got back: " + response);
 
-            if ((response.status = 200)) {
+
+          if (response.status = 200) {
             this.$store.commit("setAuthUser", response.data.authUser);
             this.$store.commit("setLoggedInStatus", true);
             //Set axios csrf token
@@ -235,8 +232,6 @@ export default {
           }
         })
         .catch(error => {
-          console.log(error);
-
           this.errors = error.response.data.errors;
           this.errorAlertVisible = true;
           this.passwordInputValue = "";

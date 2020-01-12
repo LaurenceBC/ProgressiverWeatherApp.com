@@ -123,9 +123,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("Login component mounted.");
@@ -159,7 +156,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    registerButtonClick: function registerButtonClick() {//   this.$bus.emit("authenticator-change-component", "register");
+    registerButtonClick: function registerButtonClick() {
+      this.$router.push({
+        name: "register"
+      })["catch"](function (err) {});
     },
     passwordVisible: function passwordVisible() {
       this.showpasswordtext = !this.showpasswordtext;
@@ -279,6 +279,7 @@ var render = function() {
                           outlined: "",
                           label: "Email",
                           required: "",
+                          "validate-on-blur": "",
                           rules: [
                             function(v) {
                               return !!v || "Email address is required."

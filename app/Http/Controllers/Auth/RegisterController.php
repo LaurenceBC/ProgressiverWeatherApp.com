@@ -91,6 +91,6 @@ class RegisterController extends Controller
         //return json sucesss and new csrf token
         return response()->json(['redirect' =>  $this->redirectTo,
                                  'csrf_token' => csrf_token(),
-                                    'authuser' => $user ], 200);
+                                    'authUser' => $user ], 200);
     }
 }
