@@ -101,7 +101,7 @@ class WeatherAppController extends Controller
 
 
             return response()->json([
-                'error' => 'location not found'
+                'error' => 'location not foundddd'
             ], 404);
         }
 

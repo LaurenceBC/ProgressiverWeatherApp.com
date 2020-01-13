@@ -1,15 +1,14 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[6],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/weatherapp/weather/partial-weather-current.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/weatherapp/weather/partial-weather-current.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/login.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/login.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue2_transitions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue2-transitions */ "./node_modules/vue2-transitions/dist/vue2-transitions.m.js");
 //
 //
 //
@@ -124,90 +123,96 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log("Component mounted.");
+    console.log("Login component mounted.");
   },
-  props: {
-    currentWeatherData: {
-      type: Object
-    },
-    onUsersHome: {
-      type: Boolean
-    },
-    userLoggedIn: {
-      type: Boolean
-    }
-  },
+  props: {},
   data: function data() {
     return {
-      onHomePage: this.onUsersHome || false,
-      switchAddRemoveHomePageLoading: false,
-      switchAddRemoveHomePageSuccess: false,
-      switchErrorMessage: null
+      loginRoute: this.ziggyRoute("login"),
+      emailPrependInnerIcon: true,
+      passwordPrependInnerIcon: true,
+      errors: "",
+      errorAlertVisible: false,
+      loginLoading: false,
+      loginSuccess: false,
+      showpasswordtext: false,
+      formInputDisabled: false,
+      loginFormValid: false,
+      emailInputValueValid: false,
+      passwordInputValueValid: false,
+      //Form data
+      emailInputValue: "",
+      passwordInputValue: "",
+      rememberMe: false
     };
   },
   computed: {
-    weatherData: function weatherData() {
-      return this.currentWeatherData;
-    } // onHomePage() {
-    //   return this.onHomePage || false;
-    // }
-
+    validationErrors: function validationErrors() {
+      var errors = Object.values(this.errors);
+      errors = errors.flat();
+      return errors;
+    }
   },
   methods: {
-    addRemoveHomePage: function addRemoveHomePage(switchValue) {
+    registerButtonClick: function registerButtonClick() {
+      this.$router.push({
+        name: "register"
+      })["catch"](function (err) {});
+    },
+    passwordVisible: function passwordVisible() {
+      this.showpasswordtext = !this.showpasswordtext;
+    },
+    emailFocus: function emailFocus() {
+      this.emailPrependInnerIcon = !this.emailPrependInnerIcon;
+    },
+    loginButtonClick: function loginButtonClick() {
+      this.$refs.loginForm.validate();
+
+      if (this.loginFormValid) {
+        this.formSubmit();
+      } //  this.formSubmit();
+
+    },
+    //Submits the form to laravel backend, none json
+    formSubmit: function formSubmit() {
       var _this = this;
 
-      this.onHomePage = switchValue; //If the user is logged in then process the request to add
+      this.loginLoading = true;
+      axios.post(this.loginRoute, {
+        email: this.emailInputValue,
+        password: this.passwordInputValue
+      }).then(function (response) {
+        if (response.status = 200) {
+          //Store auth user and set loggedInStatus
+          _this.$store.commit("setAuthUser", response.data.authUser);
 
-      if (this.userLoggedIn) {
-        this.switchAddRemoveHomePageLoading = true;
-        axios.post("user/weather/home/add", {
-          longitude: this.weatherData.coordinates.lon,
-          latitude: this.weatherData.coordinates.lat,
-          homepage: switchValue
-        }).then(function (res) {
-          console.log(res);
+          _this.$store.commit("setLoggedInStatus", true); //Set axios csrf token
 
-          if (res.status = 200) {
-            _this.switchAddRemoveHomePageSuccess = true;
-          }
-        })["catch"](function (err) {
-          console.error(err);
-        });
-        this.switchAddRemoveHomePageLoading = false;
-      } //Otherwise display error on switch
-      else {
-          //Set error message
-          this.switchErrorMessage = "You need to login to use this feature.";
-          this.onHomePage = false;
+
+          axios.defaults.headers.common["X-CSRF-TOKEN"] = response.data.csrf_token; //Push route
+
+          _this.$router.push({
+            name: "home"
+          })["catch"](function (err) {});
         }
+      })["catch"](function (error) {
+        _this.errors = error.response.data.errors;
+        _this.errorAlertVisible = true;
+        _this.passwordInputValue = "";
+        _this.loginLoading = false;
+      });
     }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vuetify/src/components/VSwitch/VSwitch.sass":
-/*!*****************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/dist/cjs.js??ref--8-3!./node_modules/vuetify/src/components/VSwitch/VSwitch.sass ***!
-  \*****************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vuetify/src/components/VCheckbox/VCheckbox.sass":
+/*!*********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/dist/cjs.js??ref--8-3!./node_modules/vuetify/src/components/VCheckbox/VCheckbox.sass ***!
+  \*********************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -216,17 +221,17 @@ exports = module.exports = __webpack_require__(/*! ../../../../css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/** Ripples */\n/** Elements */\n.theme--light.v-input--switch .v-input--switch__thumb {\n  color: #FFFFFF;\n}\n.theme--light.v-input--switch .v-input--switch__track {\n  color: rgba(0, 0, 0, 0.38);\n}\n.theme--light.v-input--switch.v-input--is-disabled:not(.v-input--is-dirty) .v-input--switch__thumb {\n  color: #fafafa !important;\n}\n.theme--light.v-input--switch.v-input--is-disabled:not(.v-input--is-dirty) .v-input--switch__track {\n  color: rgba(0, 0, 0, 0.12) !important;\n}\n\n.theme--dark.v-input--switch .v-input--switch__thumb {\n  color: #bdbdbd;\n}\n.theme--dark.v-input--switch .v-input--switch__track {\n  color: rgba(255, 255, 255, 0.3);\n}\n.theme--dark.v-input--switch.v-input--is-disabled:not(.v-input--is-dirty) .v-input--switch__thumb {\n  color: #424242 !important;\n}\n.theme--dark.v-input--switch.v-input--is-disabled:not(.v-input--is-dirty) .v-input--switch__track {\n  color: rgba(255, 255, 255, 0.1) !important;\n}\n\n.v-input--switch__track, .v-input--switch__thumb {\n  background-color: currentColor;\n  pointer-events: none;\n  -webkit-transition: inherit;\n  transition: inherit;\n}\n.v-input--switch__track {\n  border-radius: 8px;\n  width: 36px;\n  height: 14px;\n  left: 2px;\n  position: absolute;\n  opacity: 0.6;\n  right: 2px;\n  top: calc(50% - 7px);\n}\n.v-input--switch__thumb {\n  border-radius: 50%;\n  top: calc(50% - 10px);\n  height: 20px;\n  position: relative;\n  width: 20px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);\n  transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);\n}\n.v-input--switch .v-input--selection-controls__input {\n  width: 38px;\n}\n.v-input--switch .v-input--selection-controls__ripple {\n  top: calc(50% - 24px);\n}\n.v-input--switch.v-input--dense .v-input--switch__thumb {\n  width: 18px;\n  height: 18px;\n}\n.v-input--switch.v-input--dense .v-input--switch__track {\n  height: 12px;\n  width: 32px;\n}\n.v-input--switch.v-input--dense.v-input--switch--inset .v-input--switch__track {\n  height: 22px;\n  width: 44px;\n  top: calc(50% - 12px);\n  left: -3px;\n}\n.v-input--switch.v-input--dense .v-input--selection-controls__ripple {\n  top: calc(50% - 22px);\n}\n.v-input--switch.v-input--is-dirty.v-input--is-disabled {\n  opacity: 0.6;\n}\n.v-application--is-ltr .v-input--switch .v-input--selection-controls__ripple {\n  left: -14px;\n}\n.v-application--is-ltr .v-input--switch.v-input--dense .v-input--selection-controls__ripple {\n  left: -12px;\n}\n.v-application--is-ltr .v-input--switch.v-input--is-dirty .v-input--selection-controls__ripple,\n.v-application--is-ltr .v-input--switch.v-input--is-dirty .v-input--switch__thumb {\n  -webkit-transform: translate(20px, 0);\n          transform: translate(20px, 0);\n}\n.v-application--is-rtl .v-input--switch .v-input--selection-controls__ripple {\n  right: -14px;\n}\n.v-application--is-rtl .v-input--switch.v-input--dense .v-input--selection-controls__ripple {\n  right: -12px;\n}\n.v-application--is-rtl .v-input--switch.v-input--is-dirty .v-input--selection-controls__ripple,\n.v-application--is-rtl .v-input--switch.v-input--is-dirty .v-input--switch__thumb {\n  -webkit-transform: translate(-20px, 0);\n          transform: translate(-20px, 0);\n}\n.v-input--switch:not(.v-input--switch--flat):not(.v-input--switch--inset) .v-input--switch__thumb {\n  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);\n}\n.v-input--switch--inset .v-input--switch__track,\n.v-input--switch--inset .v-input--selection-controls__input {\n  width: 48px;\n}\n.v-input--switch--inset .v-input--switch__track {\n  border-radius: 14px;\n  height: 28px;\n  left: -4px;\n  opacity: 0.32;\n  top: calc(50% - 14px);\n}\n.v-application--is-ltr .v-input--switch--inset .v-input--selection-controls__ripple,\n.v-application--is-ltr .v-input--switch--inset .v-input--switch__thumb {\n  -webkit-transform: translate(0, 0) !important;\n          transform: translate(0, 0) !important;\n}\n.v-application--is-rtl .v-input--switch--inset .v-input--selection-controls__ripple,\n.v-application--is-rtl .v-input--switch--inset .v-input--switch__thumb {\n  -webkit-transform: translate(-6px, 0) !important;\n          transform: translate(-6px, 0) !important;\n}\n.v-application--is-ltr .v-input--switch--inset.v-input--is-dirty .v-input--selection-controls__ripple,\n.v-application--is-ltr .v-input--switch--inset.v-input--is-dirty .v-input--switch__thumb {\n  -webkit-transform: translate(20px, 0) !important;\n          transform: translate(20px, 0) !important;\n}\n.v-application--is-rtl .v-input--switch--inset.v-input--is-dirty .v-input--selection-controls__ripple,\n.v-application--is-rtl .v-input--switch--inset.v-input--is-dirty .v-input--switch__thumb {\n  -webkit-transform: translate(-26px, 0) !important;\n          transform: translate(-26px, 0) !important;\n}", ""]);
+exports.push([module.i, "/** Ripples */\n/** Elements */\n.v-input--checkbox.v-input--indeterminate.v-input--is-disabled {\n  opacity: 0.6;\n}", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/weatherapp/weather/partial-weather-current.vue?vue&type=template&id=d32e703c&":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/weatherapp/weather/partial-weather-current.vue?vue&type=template&id=d32e703c& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/login.vue?vue&type=template&id=6aa0b866&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/login.vue?vue&type=template&id=6aa0b866&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -239,71 +244,252 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "v-card",
+    { attrs: { outlined: "" } },
     [
+      _c("v-card-title", { staticClass: "pb-0" }, [_vm._v("Login")]),
+      _vm._v(" "),
       _c(
         "v-container",
-        {
-          staticStyle: {
-            "max-width": "400px",
-            padding: "0",
-            "padding-bottom": "10px"
-          }
-        },
         [
           _c(
             "v-row",
             [
               _c(
                 "v-col",
-                { staticClass: "text-center", attrs: { sm: "5" } },
+                { attrs: { cols: "12", md: "5" } },
                 [
                   _c(
-                    "zoom-center-transition",
-                    { attrs: { appear: "", duration: 300 } },
-                    [
-                      _c(
-                        "v-icon",
-                        { key: _vm.weatherData.id, attrs: { size: "85" } },
-                        [_vm._v(_vm._s(_vm.weatherData.icon.name))]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "slide-y-up-transition",
-                    { attrs: { appear: "", duration: 300 } },
-                    [
-                      _c(
-                        "p",
-                        {
-                          key: _vm.weatherData.id,
-                          staticClass: "title mb-0 text-capitalize"
+                    "v-form",
+                    {
+                      ref: "loginForm",
+                      model: {
+                        value: _vm.loginFormValid,
+                        callback: function($$v) {
+                          _vm.loginFormValid = $$v
                         },
-                        [_vm._v(_vm._s(_vm.weatherData.weather_description))]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "slide-y-up-transition",
-                    { attrs: { appear: "", duration: 300 } },
+                        expression: "loginFormValid"
+                      }
+                    },
                     [
-                      _c("v-switch", {
-                        key: _vm.weatherData.id,
+                      _c("v-text-field", {
                         attrs: {
-                          "input-value": _vm.onHomePage,
-                          label: _vm.onHomePage
-                            ? "Remove from homepage"
-                            : "Add to homepage",
-                          loading: _vm.switchAddRemoveHomePageLoading,
-                          readonly: _vm.switchAddRemoveHomePageLoading,
-                          success: _vm.switchAddRemoveHomePageSuccess,
-                          "error-messages": _vm.switchErrorMessage
+                          "prepend-inner-icon": "mdi-account-box-outline",
+                          clearable: "",
+                          outlined: "",
+                          label: "Email",
+                          required: "",
+                          "validate-on-blur": "",
+                          rules: [
+                            function(v) {
+                              return !!v || "Email address is required."
+                            },
+                            function(v) {
+                              return (
+                                /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+                                  v
+                                ) || "E-mail must be valid."
+                              )
+                            }
+                          ],
+                          disabled: _vm.formInputDisabled,
+                          success: _vm.loginFormValid
                         },
-                        on: { change: _vm.addRemoveHomePage }
-                      })
+                        model: {
+                          value: _vm.emailInputValue,
+                          callback: function($$v) {
+                            _vm.emailInputValue = $$v
+                          },
+                          expression: "emailInputValue"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: {
+                          "prepend-inner-icon": "mdi-textbox-password",
+                          outlined: "",
+                          type: _vm.showpasswordtext ? "text" : "password",
+                          label: "Password",
+                          rules: [
+                            function(v) {
+                              return !!v || "Password is required"
+                            }
+                          ],
+                          required: "",
+                          disabled: _vm.formInputDisabled,
+                          success: _vm.loginFormValid
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "append",
+                            fn: function() {
+                              return [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: { icon: "", rounded: "", small: "" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.passwordVisible()
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("v-icon", [
+                                      _vm._v(
+                                        "\n                  " +
+                                          _vm._s(
+                                            _vm.showpasswordtext
+                                              ? "mdi-eye"
+                                              : "mdi-eye-off"
+                                          ) +
+                                          "\n                "
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ]
+                            },
+                            proxy: true
+                          }
+                        ]),
+                        model: {
+                          value: _vm.passwordInputValue,
+                          callback: function($$v) {
+                            _vm.passwordInputValue = $$v
+                          },
+                          expression: "passwordInputValue"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "v-alert",
+                        {
+                          attrs: { type: "error", value: "", dismissible: "" },
+                          model: {
+                            value: _vm.errorAlertVisible,
+                            callback: function($$v) {
+                              _vm.errorAlertVisible = $$v
+                            },
+                            expression: "errorAlertVisible"
+                          }
+                        },
+                        _vm._l(_vm.validationErrors, function(value, key) {
+                          return _c("v-list-item", { key: key }, [
+                            _vm._v(_vm._s(value))
+                          ])
+                        }),
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-row",
+                        { staticClass: "pb-4 pr-4 pl-4" },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: {
+                                loading: _vm.loginLoading ? true : false,
+                                disabled: _vm.loginFormValid ? false : true,
+                                block: "",
+                                color: "primary",
+                                large: ""
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.loginButtonClick()
+                                }
+                              }
+                            },
+                            [
+                              _c("v-icon", { attrs: { left: "" } }, [
+                                _vm._v("mdi-login")
+                              ]),
+                              _vm._v("Login\n            ")
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("v-checkbox", {
+                            attrs: {
+                              "hide-details": "",
+                              label: "Remember me."
+                            },
+                            model: {
+                              value: _vm.rememberMe,
+                              callback: function($$v) {
+                                _vm.rememberMe = $$v
+                              },
+                              expression: "rememberMe"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-row",
+                        { staticClass: "pb-4 pr-2 pl-2" },
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { left: "" } },
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    small: "",
+                                    outlined: "",
+                                    block: "",
+                                    color: "primary"
+                                  }
+                                },
+                                [
+                                  _c("v-icon", [_vm._v("mdi-file-lock")]),
+                                  _vm._v(
+                                    "Forgot\n                password\n              "
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { right: "" } },
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    small: "",
+                                    outlined: "",
+                                    block: "",
+                                    color: "primary"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.registerButtonClick()
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("v-icon", [_vm._v("mdi-account-plus")]),
+                                  _vm._v("Register\n              ")
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -311,90 +497,34 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
+              _vm.$vuetify.breakpoint.smAndUp
+                ? _c(
+                    "v-col",
+                    { staticClass: "text-center", attrs: { cols: "2" } },
+                    [_c("v-divider", { attrs: { vertical: "" } })],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
               _c(
                 "v-col",
-                { attrs: { sm: "7" } },
+                { attrs: { cols: "12", md: "5" } },
                 [
                   _c(
-                    "v-row",
+                    "v-btn",
+                    {
+                      staticClass: "mb-2",
+                      attrs: {
+                        large: "",
+                        top: "",
+                        block: "",
+                        color: "light-green",
+                        href: "/login/redirect/google"
+                      }
+                    },
                     [
-                      _c(
-                        "v-col",
-                        [
-                          _c(
-                            "slide-x-right-transition",
-                            { attrs: { appear: "", duration: 300 } },
-                            [
-                              _c(
-                                "p",
-                                {
-                                  key: _vm.weatherData.id,
-                                  staticClass: "display-2 mb-0"
-                                },
-                                [_vm._v(_vm._s(_vm.weatherData.temp) + "℃")]
-                              )
-                            ]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        [
-                          _c(
-                            "zoom-center-transition",
-                            { attrs: { appear: "", duration: 300 } },
-                            [
-                              _c(
-                                "p",
-                                {
-                                  key: _vm.weatherData.id,
-                                  staticClass: "display-1 text-left mb-1"
-                                },
-                                [_vm._v(_vm._s(_vm.weatherData.location_name))]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "slide-y-up-transition",
-                            { attrs: { appear: "", duration: 300 } },
-                            [
-                              _c(
-                                "p",
-                                {
-                                  key: _vm.weatherData.id,
-                                  staticClass: "title text-left mb-0"
-                                },
-                                [_vm._v(_vm._s(_vm.weatherData.date))]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "slide-y-up-transition",
-                            { attrs: { appear: "", duration: 300 } },
-                            [
-                              _c(
-                                "p",
-                                {
-                                  key: _vm.weatherData.id,
-                                  staticClass: "title text-left mb-0"
-                                },
-                                [_vm._v(_vm._s(_vm.weatherData.time))]
-                              )
-                            ]
-                          )
-                        ],
-                        1
-                      )
+                      _c("v-icon", [_vm._v("mdi-google")]),
+                      _vm._v("Google\n        ")
                     ],
                     1
                   )
@@ -408,151 +538,22 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "v-container",
-        [
-          _c(
-            "slide-y-up-transition",
-            { attrs: { appear: "" } },
+      _vm.loginSuccess
+        ? _c(
+            "v-container",
             [
               _c(
-                "v-row",
-                { key: _vm.weatherData.id },
+                "v-card",
+                { attrs: { outlined: "" } },
                 [
-                  _c("v-col", { attrs: { sm: "2" } }, [
-                    _c(
-                      "p",
-                      { staticClass: "text-center mb-2" },
-                      [
-                        _c("v-icon", { attrs: { color: "#22d46f" } }, [
-                          _vm._v("mdi-water-percent")
-                        ])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-center title mb-2" }, [
-                      _vm._v("Humidity")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-center mb-2" }, [
-                      _vm._v(_vm._s(_vm.weatherData.humidity) + "%")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("v-col", { attrs: { sm: "2" } }, [
-                    _c(
-                      "p",
-                      { staticClass: "text-center mb-2" },
-                      [
-                        _c("v-icon", { attrs: { color: "blue" } }, [
-                          _vm._v("mdi-water-pump")
-                        ])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-center title mb-2" }, [
-                      _vm._v("Pressure")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-center mb-2" }, [
-                      _vm._v(_vm._s(_vm.weatherData.pressure))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("v-col", { attrs: { sm: "2" } }, [
-                    _c(
-                      "p",
-                      { staticClass: "text-center mb-2" },
-                      [
-                        _c("v-icon", { attrs: { color: "cryan" } }, [
-                          _vm._v("mdi-eye-outline")
-                        ])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-center title mb-2" }, [
-                      _vm._v("Visibility")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-center mb-2" }, [
-                      _vm._v(_vm._s(_vm.weatherData.visibility))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("v-col", { attrs: { sm: "2" } }, [
-                    _c(
-                      "p",
-                      { staticClass: "text-center mb-2" },
-                      [
-                        _c("v-icon", { attrs: { color: "#b4badb" } }, [
-                          _vm._v("mdi-weather-windy")
-                        ])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-center title mb-2" }, [
-                      _vm._v("Wind speed")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-center mb-2" }, [
-                      _vm._v(_vm._s(_vm.weatherData.wind.speed) + "mph")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("v-col", { attrs: { sm: "2" } }, [
-                    _c(
-                      "p",
-                      { staticClass: "text-center mb-2" },
-                      [
-                        _c("v-icon", { attrs: { color: "#bdc8ff" } }, [
-                          _vm._v("mdi-thermometer")
-                        ])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-center title mb-2" }, [
-                      _vm._v("Temp min")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-center mb-2" }, [
-                      _vm._v(_vm._s(_vm.weatherData.temp_min) + "℃")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("v-col", { attrs: { sm: "2" } }, [
-                    _c(
-                      "p",
-                      { staticClass: "text-center mb-2" },
-                      [
-                        _c("v-icon", { attrs: { color: "red" } }, [
-                          _vm._v("mdi-thermometer-lines")
-                        ])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-center title mb-2" }, [
-                      _vm._v("Temp max")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-center mb-2" }, [
-                      _vm._v(_vm._s(_vm.weatherData.temp_max) + "℃")
-                    ])
-                  ])
+                  _c("v-card-title", { staticClass: "pb-0" }, [_vm._v("Login")])
                 ],
                 1
               )
             ],
             1
           )
-        ],
-        1
-      )
+        : _vm._e()
     ],
     1
   )
@@ -564,174 +565,165 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vuetify/lib/components/VSwitch/VSwitch.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/vuetify/lib/components/VSwitch/VSwitch.js ***!
-  \****************************************************************/
+/***/ "./node_modules/vuetify/lib/components/VCheckbox/VCheckbox.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VCheckbox/VCheckbox.js ***!
+  \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _src_styles_components_selection_controls_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../src/styles/components/_selection-controls.sass */ "./node_modules/vuetify/src/styles/components/_selection-controls.sass");
-/* harmony import */ var _src_styles_components_selection_controls_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_src_styles_components_selection_controls_sass__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _src_components_VSwitch_VSwitch_sass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/components/VSwitch/VSwitch.sass */ "./node_modules/vuetify/src/components/VSwitch/VSwitch.sass");
-/* harmony import */ var _src_components_VSwitch_VSwitch_sass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_src_components_VSwitch_VSwitch_sass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _mixins_selectable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/selectable */ "./node_modules/vuetify/lib/mixins/selectable/index.js");
+/* harmony import */ var _src_components_VCheckbox_VCheckbox_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../src/components/VCheckbox/VCheckbox.sass */ "./node_modules/vuetify/src/components/VCheckbox/VCheckbox.sass");
+/* harmony import */ var _src_components_VCheckbox_VCheckbox_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_src_components_VCheckbox_VCheckbox_sass__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _src_styles_components_selection_controls_sass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/styles/components/_selection-controls.sass */ "./node_modules/vuetify/src/styles/components/_selection-controls.sass");
+/* harmony import */ var _src_styles_components_selection_controls_sass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_src_styles_components_selection_controls_sass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _VIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
 /* harmony import */ var _VInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../VInput */ "./node_modules/vuetify/lib/components/VInput/index.js");
-/* harmony import */ var _directives_touch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../directives/touch */ "./node_modules/vuetify/lib/directives/touch/index.js");
-/* harmony import */ var _transitions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../transitions */ "./node_modules/vuetify/lib/components/transitions/index.js");
-/* harmony import */ var _VProgressCircular_VProgressCircular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../VProgressCircular/VProgressCircular */ "./node_modules/vuetify/lib/components/VProgressCircular/VProgressCircular.js");
-/* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/helpers */ "./node_modules/vuetify/lib/util/helpers.js");
+/* harmony import */ var _mixins_selectable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../mixins/selectable */ "./node_modules/vuetify/lib/mixins/selectable/index.js");
 // Styles
-
- // Mixins
-
-
- // Directives
 
  // Components
 
 
- // Helpers
+ // Mixins
 
 
 /* @vue/component */
 
-/* harmony default export */ __webpack_exports__["default"] = (_mixins_selectable__WEBPACK_IMPORTED_MODULE_2__["default"].extend({
-  name: 'v-switch',
-  directives: {
-    Touch: _directives_touch__WEBPACK_IMPORTED_MODULE_4__["default"]
-  },
+/* harmony default export */ __webpack_exports__["default"] = (_mixins_selectable__WEBPACK_IMPORTED_MODULE_4__["default"].extend({
+  name: 'v-checkbox',
   props: {
-    inset: Boolean,
-    loading: {
-      type: [Boolean, String],
-      default: false
+    indeterminate: Boolean,
+    indeterminateIcon: {
+      type: String,
+      default: '$checkboxIndeterminate'
     },
-    flat: {
-      type: Boolean,
-      default: false
+    offIcon: {
+      type: String,
+      default: '$checkboxOff'
+    },
+    onIcon: {
+      type: String,
+      default: '$checkboxOn'
     }
   },
+
+  data() {
+    return {
+      inputIndeterminate: this.indeterminate
+    };
+  },
+
   computed: {
     classes() {
       return { ..._VInput__WEBPACK_IMPORTED_MODULE_3__["default"].options.computed.classes.call(this),
-        'v-input--selection-controls v-input--switch': true,
-        'v-input--switch--flat': this.flat,
-        'v-input--switch--inset': this.inset
+        'v-input--selection-controls': true,
+        'v-input--checkbox': true,
+        'v-input--indeterminate': this.inputIndeterminate
       };
     },
 
-    attrs() {
-      return {
-        'aria-checked': String(this.isActive),
-        'aria-disabled': String(this.disabled),
-        role: 'switch'
-      };
+    computedIcon() {
+      if (this.inputIndeterminate) {
+        return this.indeterminateIcon;
+      } else if (this.isActive) {
+        return this.onIcon;
+      } else {
+        return this.offIcon;
+      }
     },
 
     // Do not return undefined if disabled,
     // according to spec, should still show
     // a color when disabled and active
     validationState() {
+      if (this.disabled && !this.inputIndeterminate) return undefined;
       if (this.hasError && this.shouldValidate) return 'error';
       if (this.hasSuccess) return 'success';
       if (this.hasColor !== null) return this.computedColor;
       return undefined;
+    }
+
+  },
+  watch: {
+    indeterminate(val) {
+      // https://github.com/vuetifyjs/vuetify/issues/8270
+      this.$nextTick(() => this.inputIndeterminate = val);
     },
 
-    switchData() {
-      return this.setTextColor(this.loading ? undefined : this.validationState, {
-        class: this.themeClasses
-      });
+    inputIndeterminate(val) {
+      this.$emit('update:indeterminate', val);
+    },
+
+    isActive() {
+      if (!this.indeterminate) return;
+      this.inputIndeterminate = false;
     }
 
   },
   methods: {
-    genDefaultSlot() {
-      return [this.genSwitch(), this.genLabel()];
-    },
-
-    genSwitch() {
+    genCheckbox() {
       return this.$createElement('div', {
         staticClass: 'v-input--selection-controls__input'
-      }, [this.genInput('checkbox', { ...this.attrs,
-        ...this.attrs$
-      }), this.genRipple(this.setTextColor(this.validationState, {
-        directives: [{
-          name: 'touch',
-          value: {
-            left: this.onSwipeLeft,
-            right: this.onSwipeRight
-          }
-        }]
-      })), this.$createElement('div', {
-        staticClass: 'v-input--switch__track',
-        ...this.switchData
-      }), this.$createElement('div', {
-        staticClass: 'v-input--switch__thumb',
-        ...this.switchData
-      }, [this.genProgress()])]);
-    },
-
-    genProgress() {
-      return this.$createElement(_transitions__WEBPACK_IMPORTED_MODULE_5__["VFabTransition"], {}, [this.loading === false ? null : this.$slots.progress || this.$createElement(_VProgressCircular_VProgressCircular__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }, [this.genInput('checkbox', { ...this.attrs$,
+        'aria-checked': this.inputIndeterminate ? 'mixed' : this.isActive.toString()
+      }), this.genRipple(this.setTextColor(this.validationState)), this.$createElement(_VIcon__WEBPACK_IMPORTED_MODULE_2__["default"], this.setTextColor(this.validationState, {
         props: {
-          color: this.loading === true || this.loading === '' ? this.color || 'primary' : this.loading,
-          size: 16,
-          width: 2,
-          indeterminate: true
+          dense: this.dense,
+          dark: this.dark,
+          light: this.light
         }
-      })]);
+      }), this.computedIcon)]);
     },
 
-    onSwipeLeft() {
-      if (this.isActive) this.onChange();
-    },
-
-    onSwipeRight() {
-      if (!this.isActive) this.onChange();
-    },
-
-    onKeydown(e) {
-      if (e.keyCode === _util_helpers__WEBPACK_IMPORTED_MODULE_7__["keyCodes"].left && this.isActive || e.keyCode === _util_helpers__WEBPACK_IMPORTED_MODULE_7__["keyCodes"].right && !this.isActive) this.onChange();
+    genDefaultSlot() {
+      return [this.genCheckbox(), this.genLabel()];
     }
 
   }
 }));
-//# sourceMappingURL=VSwitch.js.map
+//# sourceMappingURL=VCheckbox.js.map
 
 /***/ }),
 
-/***/ "./node_modules/vuetify/lib/components/VSwitch/index.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/vuetify/lib/components/VSwitch/index.js ***!
-  \**************************************************************/
-/*! exports provided: VSwitch, default */
+/***/ "./node_modules/vuetify/lib/components/VCheckbox/index.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VCheckbox/index.js ***!
+  \****************************************************************/
+/*! exports provided: VCheckbox, VSimpleCheckbox, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _VSwitch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VSwitch */ "./node_modules/vuetify/lib/components/VSwitch/VSwitch.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VSwitch", function() { return _VSwitch__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+/* harmony import */ var _VCheckbox__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VCheckbox */ "./node_modules/vuetify/lib/components/VCheckbox/VCheckbox.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VCheckbox", function() { return _VCheckbox__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _VSimpleCheckbox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VSimpleCheckbox */ "./node_modules/vuetify/lib/components/VCheckbox/VSimpleCheckbox.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VSimpleCheckbox", function() { return _VSimpleCheckbox__WEBPACK_IMPORTED_MODULE_1__["default"]; });
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_VSwitch__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  $_vuetify_subcomponents: {
+    VCheckbox: _VCheckbox__WEBPACK_IMPORTED_MODULE_0__["default"],
+    VSimpleCheckbox: _VSimpleCheckbox__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }
+});
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./node_modules/vuetify/src/components/VSwitch/VSwitch.sass":
-/*!******************************************************************!*\
-  !*** ./node_modules/vuetify/src/components/VSwitch/VSwitch.sass ***!
-  \******************************************************************/
+/***/ "./node_modules/vuetify/src/components/VCheckbox/VCheckbox.sass":
+/*!**********************************************************************!*\
+  !*** ./node_modules/vuetify/src/components/VCheckbox/VCheckbox.sass ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../css-loader!../../../../postcss-loader/src??ref--8-2!../../../../sass-loader/dist/cjs.js??ref--8-3!./VSwitch.sass */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vuetify/src/components/VSwitch/VSwitch.sass");
+var content = __webpack_require__(/*! !../../../../css-loader!../../../../postcss-loader/src??ref--8-2!../../../../sass-loader/dist/cjs.js??ref--8-3!./VCheckbox.sass */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vuetify/src/components/VCheckbox/VCheckbox.sass");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -753,23 +745,30 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./resources/js/components/weatherapp/weather/partial-weather-current.vue":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/weatherapp/weather/partial-weather-current.vue ***!
-  \********************************************************************************/
+/***/ "./resources/js/components/auth/login.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/auth/login.vue ***!
+  \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _partial_weather_current_vue_vue_type_template_id_d32e703c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./partial-weather-current.vue?vue&type=template&id=d32e703c& */ "./resources/js/components/weatherapp/weather/partial-weather-current.vue?vue&type=template&id=d32e703c&");
-/* harmony import */ var _partial_weather_current_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./partial-weather-current.vue?vue&type=script&lang=js& */ "./resources/js/components/weatherapp/weather/partial-weather-current.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
+/* harmony import */ var _login_vue_vue_type_template_id_6aa0b866_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./login.vue?vue&type=template&id=6aa0b866&scoped=true& */ "./resources/js/components/auth/login.vue?vue&type=template&id=6aa0b866&scoped=true&");
+/* harmony import */ var _login_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/login.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VSwitch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VSwitch */ "./node_modules/vuetify/lib/components/VSwitch/index.js");
+/* harmony import */ var vuetify_lib_components_VAlert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VAlert */ "./node_modules/vuetify/lib/components/VAlert/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCheckbox */ "./node_modules/vuetify/lib/components/VCheckbox/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
+/* harmony import */ var vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VForm */ "./node_modules/vuetify/lib/components/VForm/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
 
 
 
@@ -778,12 +777,12 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _partial_weather_current_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _partial_weather_current_vue_vue_type_template_id_d32e703c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _partial_weather_current_vue_vue_type_template_id_d32e703c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _login_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _login_vue_vue_type_template_id_6aa0b866_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _login_vue_vue_type_template_id_6aa0b866_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "6aa0b866",
   null
   
 )
@@ -795,43 +794,51 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_4__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_4__["VContainer"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_5__["VIcon"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_4__["VRow"],VSwitch: vuetify_lib_components_VSwitch__WEBPACK_IMPORTED_MODULE_6__["VSwitch"]})
+
+
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VAlert: vuetify_lib_components_VAlert__WEBPACK_IMPORTED_MODULE_4__["VAlert"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VCheckbox: vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_7__["VCheckbox"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VContainer"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_9__["VDivider"],VForm: vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_10__["VForm"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_11__["VIcon"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItem"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VRow"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_13__["VTextField"]})
 
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/weatherapp/weather/partial-weather-current.vue"
+component.options.__file = "resources/js/components/auth/login.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/weatherapp/weather/partial-weather-current.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************!*\
-  !*** ./resources/js/components/weatherapp/weather/partial-weather-current.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************/
+/***/ "./resources/js/components/auth/login.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/auth/login.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_partial_weather_current_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./partial-weather-current.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/weatherapp/weather/partial-weather-current.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_partial_weather_current_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_login_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./login.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/login.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_login_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/weatherapp/weather/partial-weather-current.vue?vue&type=template&id=d32e703c&":
-/*!***************************************************************************************************************!*\
-  !*** ./resources/js/components/weatherapp/weather/partial-weather-current.vue?vue&type=template&id=d32e703c& ***!
-  \***************************************************************************************************************/
+/***/ "./resources/js/components/auth/login.vue?vue&type=template&id=6aa0b866&scoped=true&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/auth/login.vue?vue&type=template&id=6aa0b866&scoped=true& ***!
+  \*******************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_partial_weather_current_vue_vue_type_template_id_d32e703c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./partial-weather-current.vue?vue&type=template&id=d32e703c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/weatherapp/weather/partial-weather-current.vue?vue&type=template&id=d32e703c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_partial_weather_current_vue_vue_type_template_id_d32e703c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_login_vue_vue_type_template_id_6aa0b866_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./login.vue?vue&type=template&id=6aa0b866&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/login.vue?vue&type=template&id=6aa0b866&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_login_vue_vue_type_template_id_6aa0b866_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_partial_weather_current_vue_vue_type_template_id_d32e703c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_login_vue_vue_type_template_id_6aa0b866_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -25,6 +25,7 @@
 
 
 <script>
+import VueBus from 'vue-bus';
 const weather = () => import("./weather/weather.vue");
 
 export default {

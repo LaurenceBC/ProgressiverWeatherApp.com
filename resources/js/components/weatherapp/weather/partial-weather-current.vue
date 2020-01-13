@@ -125,6 +125,7 @@
 </template>
 
 <script>
+import VueBus from 'vue-bus';
 import { ZoomCenterTransition } from "vue2-transitions";
 import { SlideXRightTransition } from "vue2-transitions";
 import { SlideYUpTransition } from "vue2-transitions";
@@ -174,16 +175,26 @@ export default {
           .then(res => {
             console.log(res);
 
+
             if ((res.status = 200)) {
               this.switchAddRemoveHomePageSuccess = true;
 
             }
+
+            //Emit usersWeather if removed to remove from homepage
+            if(!switchValue) { }
+
+
+            //Show snackbar message
+             this.$bus.emit('showSnackBarMessage', switchValue ? "Added to homepage" : "Removed from homepage");
           })
           .catch(err => {
             console.error(err);
           });
 
         this.switchAddRemoveHomePageLoading = false;
+
+
       }
       //Otherwise display error on switch
       else {

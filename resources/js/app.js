@@ -5,6 +5,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+import VueBus from 'vue-bus';
+
+Vue.use(VueBus);
+
 import Vuex from "vuex";
 
 Vue.use(Vuex);

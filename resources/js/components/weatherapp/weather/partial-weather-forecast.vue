@@ -3,7 +3,7 @@
         <v-row>
             <v-col cols=12 md class="pl-1 pr-1 text-center pb-0 pt-0" v-for="(item, index) in forecastData" v-bind:key="index">
                 <slide-y-up-transition appear :delay="200">
-                <v-row align="center" class="text-center forecast-row mr-1 ml-1 mt-1 mb-1 pb-0 pt-0">
+                <v-row align="center" class="text-center mr-1 ml-1 mt-1 mb-1 pb-0 pt-0">
 
 
                     <!-- Short day name. -->
@@ -31,7 +31,9 @@
                         <p class="">{{item.humidity}}%</p>
                     </v-col>
                 </v-row>
+
                 </slide-y-up-transition>
+                   <v-divider></v-divider>
             </v-col>
 
         </v-row>

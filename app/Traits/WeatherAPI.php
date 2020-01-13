@@ -40,7 +40,7 @@ trait WeatherAPI
                 'speed' => $weatherData->wind->speed,
                 'direction' => $weatherData->wind->deg ?? null
             ],
-            'visibility' => $weatherData->visibility,
+            'visibility' => $weatherData->visibility ?? null,
             'sys_time' => $weatherData->dt,
             'date' => $dateTime->setTimestamp($weatherData->dt)->format('jS F'),
             'day' => $dateTime->setTimestamp($weatherData->dt)->format('l'),

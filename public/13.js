@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[13],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/weatherapp/weather/partial-weather-current.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************************************************************************!*\
@@ -195,7 +195,7 @@ __webpack_require__.r(__webpack_exports__);
           if (!switchValue) {} //Show snackbar message
 
 
-          _this.$bus.emit('showSnackBarMessage', switchValue ? "Added to homepage" : "Removed from homepage");
+          _this.$bus.emit('showSnackbarMessage', switchValue ? "Added to homepage" : "Removed from homepage");
         })["catch"](function (err) {
           console.error(err);
         });

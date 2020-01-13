@@ -3,14 +3,19 @@
     <slide-x-left-transition appear :delay="200" :duration="200">
       <router-view v-cloak></router-view>
     </slide-x-left-transition>
+    <v-snackbar bottom left :timeout=5000 v-model="snackBarVisible">{{snackBarMessage}}</v-snackbar>
   </div>
 </template>
 
 <script>
 import { SlideXLeftTransition } from "vue2-transitions";
 
+
 export default {
   mounted() {
+
+
+
     console.log("Main weather app component mounted.");
     this.$store.commit("setAuthUser", this.userauth);
 
@@ -20,15 +25,40 @@ export default {
       this.$store.commit("setLoggedInStatus", true);
     }
   },
+  created() {
+  this.$bus.on('showSnackBarMessage', this.showSnackBarMessage);
+  },
+
 
   props: {
     userauth: null
   },
 
   data() {
-    return {};
+    return {
+        snackBarMessage: "",
+        snackBarVisible: false,
+    };
   },
-  methods: {}
+  methods: {
+
+      showSnackBarMessage(message)
+      {
+
+          this.snackBarVisible = false;
+
+
+          this.snackBarMessage = message;
+          this.snackBarVisible = true;
+
+
+
+
+
+
+
+      }
+  }
 };
 </script>
 

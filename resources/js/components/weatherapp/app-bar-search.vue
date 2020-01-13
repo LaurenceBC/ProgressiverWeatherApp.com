@@ -27,7 +27,7 @@
 
 
 <script>
-import VueBus from 'vue-bus';
+// import VueBus from 'vue-bus';
 
 export default {
   mounted() {
