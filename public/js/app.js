@@ -99518,22 +99518,23 @@ module.exports = function(module) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var babel_polyfill__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! babel-polyfill */ "./node_modules/babel-polyfill/lib/index.js");
-/* harmony import */ var babel_polyfill__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(babel_polyfill__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vue_bus__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-bus */ "./node_modules/vue-bus/dist/vue-bus.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
-/* harmony import */ var material_design_icons_iconfont_dist_material_design_icons_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! material-design-icons-iconfont/dist/material-design-icons.css */ "./node_modules/material-design-icons-iconfont/dist/material-design-icons.css");
-/* harmony import */ var material_design_icons_iconfont_dist_material_design_icons_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(material_design_icons_iconfont_dist_material_design_icons_css__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var ziggy__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ziggy */ "./vendor/tightenco/ziggy/src/js/route.js");
-/* harmony import */ var _ziggy__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ziggy */ "./resources/js/ziggy.js");
-/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
-/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vuetify__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _mdi_font_css_materialdesignicons_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mdi/font/css/materialdesignicons.css */ "./node_modules/@mdi/font/css/materialdesignicons.css");
-/* harmony import */ var _mdi_font_css_materialdesignicons_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_mdi_font_css_materialdesignicons_css__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var babel_polyfill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! babel-polyfill */ "./node_modules/babel-polyfill/lib/index.js");
+/* harmony import */ var babel_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(babel_polyfill__WEBPACK_IMPORTED_MODULE_0__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'whatwg-fetch'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_bus__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-bus */ "./node_modules/vue-bus/dist/vue-bus.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
+/* harmony import */ var material_design_icons_iconfont_dist_material_design_icons_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! material-design-icons-iconfont/dist/material-design-icons.css */ "./node_modules/material-design-icons-iconfont/dist/material-design-icons.css");
+/* harmony import */ var material_design_icons_iconfont_dist_material_design_icons_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(material_design_icons_iconfont_dist_material_design_icons_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var ziggy__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ziggy */ "./vendor/tightenco/ziggy/src/js/route.js");
+/* harmony import */ var _ziggy__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ziggy */ "./resources/js/ziggy.js");
+/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
+/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(vuetify__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _mdi_font_css_materialdesignicons_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mdi/font/css/materialdesignicons.css */ "./node_modules/@mdi/font/css/materialdesignicons.css");
+/* harmony import */ var _mdi_font_css_materialdesignicons_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_mdi_font_css_materialdesignicons_css__WEBPACK_IMPORTED_MODULE_11__);
 /**
  *
  */
@@ -99541,10 +99542,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_bus__WEBPACK_IMPORTED_MODULE_3__["default"]);
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__["default"]);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_bus__WEBPACK_IMPORTED_MODULE_4__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_5__["default"]);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_5__["default"].Store({
   state: {
     authUser: null,
     loggedInStatus: false
@@ -99567,10 +99569,10 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store({
   }
 }); //VueRouter
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
 
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  routes: _routes__WEBPACK_IMPORTED_MODULE_5__["default"],
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]({
+  routes: _routes__WEBPACK_IMPORTED_MODULE_6__["default"],
   mode: "history",
   scrollBehavior: function scrollBehavior() {
     window.scrollTo(0, 0);
@@ -99603,16 +99605,16 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin({
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.mixin({
   methods: {
     ziggyRoute: function ziggyRoute(name, params, absolute) {
-      return Object(ziggy__WEBPACK_IMPORTED_MODULE_7__["default"])(name, params, absolute, _ziggy__WEBPACK_IMPORTED_MODULE_8__["Ziggy"]);
+      return Object(ziggy__WEBPACK_IMPORTED_MODULE_8__["default"])(name, params, absolute, _ziggy__WEBPACK_IMPORTED_MODULE_9__["Ziggy"]);
     }
   }
 });
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_9___default.a, {
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_10___default.a, {
   iconfont: "mdi"
 });
 /**
@@ -99625,8 +99627,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("weather-app", __webpack_require__(/*! ./components/weatherapp/weather-app.vue */ "./resources/js/components/weatherapp/weather-app.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("app-bar", __webpack_require__(/*! ./components/weatherapp/app-bar.vue */ "./resources/js/components/weatherapp/app-bar.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component("weather-app", __webpack_require__(/*! ./components/weatherapp/weather-app.vue */ "./resources/js/components/weatherapp/weather-app.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component("app-bar", __webpack_require__(/*! ./components/weatherapp/app-bar.vue */ "./resources/js/components/weatherapp/app-bar.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -99639,9 +99641,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("app-bar", __webpack_requir
 //     // render: h => h(App)
 // }).$mount('#app');
 
-var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
+var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   router: router,
-  vuetify: new vuetify__WEBPACK_IMPORTED_MODULE_9___default.a({}),
+  vuetify: new vuetify__WEBPACK_IMPORTED_MODULE_10___default.a({}),
   store: store //render: h => h(App) //add this new line
 
 }).$mount("#app");
