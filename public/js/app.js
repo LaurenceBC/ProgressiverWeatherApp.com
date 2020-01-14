@@ -88903,7 +88903,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Login = function Login() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(7), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./components/auth/login.vue */ "./resources/js/components/auth/login.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(4), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./components/auth/login.vue */ "./resources/js/components/auth/login.vue"));
 };
 
 var Register = function Register() {

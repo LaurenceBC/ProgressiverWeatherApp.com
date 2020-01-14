@@ -40,7 +40,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //Import weather components partials
 var weathercurrent = function weathercurrent() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./partial-weather-current.vue */ "./resources/js/components/weatherapp/weather/partial-weather-current.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./partial-weather-current.vue */ "./resources/js/components/weatherapp/weather/partial-weather-current.vue"));
 };
 
 var weatherforecasted = function weatherforecasted() {
