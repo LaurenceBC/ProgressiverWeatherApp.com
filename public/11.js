@@ -36,6 +36,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 var weather = function weather() {
@@ -52,6 +59,10 @@ var weather = function weather() {
   },
   components: {
     weather: weather
+  },
+  created: function created() {
+    //Listen for homepage remval
+    this.$bus.on('removeWeatherFromUsersHomepage', this.removeWeatherFromUsersHomePage);
   },
   data: function data() {
     return {
@@ -79,6 +90,9 @@ var weather = function weather() {
           myLocation: true
         }
       });
+    },
+    removeWeatherFromUsersHomePage: function removeWeatherFromUsersHomePage(userWeatherData) {
+      console.log(userWeatherData);
     }
   }
 });
@@ -130,7 +144,7 @@ var render = function() {
                     _c("v-icon", { attrs: { left: "" } }, [
                       _vm._v("mdi-crosshairs-gps")
                     ]),
-                    _vm._v("Locate me\n      ")
+                    _vm._v("Locate me\n        ")
                   ],
                   1
                 )
@@ -145,6 +159,14 @@ var render = function() {
             _c("p", { staticClass: "title text-center" }, [
               _vm._v("Hi, here's your homepage weather.")
             ]),
+            _vm._v(" "),
+            !_vm.homepageWeatherData.length
+              ? _c("div", [
+                  _c("p", { staticClass: "title-2 text-center" }, [
+                    _vm._v(" You dont have any weather on your home page. ")
+                  ])
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _vm._l(_vm.homepageWeatherData, function(item, index) {
               return _c("weather", { key: index, attrs: { weatherData: item } })

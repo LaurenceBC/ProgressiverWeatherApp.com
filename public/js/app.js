@@ -2235,16 +2235,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log("Main weather app component mounted.");
+    console.log("Main weather app component mounted."); //store authUser is passed by laravel blade.
+
     this.$store.commit("setAuthUser", this.userauth); //Check if user is logged in and set $store state to true.
 
     if (this.$store.state.authUser) {
-      console.log("logged in");
       this.$store.commit("setLoggedInStatus", true);
     }
   },
   created: function created() {
-    this.$bus.on('showSnackBarMessage', this.showSnackBarMessage);
+    //Listen for snackbar emit.
+    this.$bus.on("showSnackBarMessage", this.showSnackBarMessage);
   },
   props: {
     userauth: null
@@ -2257,7 +2258,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     showSnackBarMessage: function showSnackBarMessage(message) {
-      this.snackBarVisible = false;
+      //Set the snackbar visible to false
+      this.snackBarVisible = false; //Set the snackbar message and
+
       this.snackBarMessage = message;
       this.snackBarVisible = true;
     }

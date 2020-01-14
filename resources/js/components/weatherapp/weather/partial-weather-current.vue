@@ -182,7 +182,7 @@ export default {
             }
 
             //Emit usersWeather if removed to remove from homepage
-            if(!switchValue) { }
+            if(!switchValue) { this.$bus.emit('removeWeatherFromUsersHomepage', "test") }
 
 
             //Show snackbar message

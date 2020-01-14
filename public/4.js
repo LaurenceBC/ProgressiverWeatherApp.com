@@ -192,7 +192,9 @@ __webpack_require__.r(__webpack_exports__);
           } //Emit usersWeather if removed to remove from homepage
 
 
-          if (!switchValue) {} //Show snackbar message
+          if (!switchValue) {
+            _this.$bus.emit('removeWeatherFromUsersHomepage', "test");
+          } //Show snackbar message
 
 
           _this.$bus.emit('showSnackBarMessage', switchValue ? "Added to homepage" : "Removed from homepage");

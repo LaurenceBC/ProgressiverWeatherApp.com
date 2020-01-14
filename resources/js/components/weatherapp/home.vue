@@ -18,6 +18,13 @@
     <template v-if="isLoggedIn">
       <p class="title text-center">Hi, here's your homepage weather.</p>
 
+
+
+      <div v-if="!homepageWeatherData.length">
+         <p class="title-2 text-center"> You dont have any weather on your home page. </p>
+
+</div>
+
       <weather v-for="(item, index) in homepageWeatherData" :key="index" :weatherData="item"></weather>
     </template>
   </div>
@@ -40,6 +47,12 @@ export default {
 
   components: {
     weather
+  },
+  created() {
+
+      //Listen for homepage remval
+      this.$bus.on('removeWeatherFromUsersHomepage', this.removeWeatherFromUsersHomePage)
+
   },
 
   data() {
@@ -70,6 +83,14 @@ export default {
 
         this.$router.push({ name: 'weather.mylocation', params: {myLocation: true }});
     },
+
+    removeWeatherFromUsersHomePage(userWeatherData) {
+
+        console.log(userWeatherData);
+
+    },
+
+
 
 
 
