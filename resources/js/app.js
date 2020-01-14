@@ -4,6 +4,7 @@
 
 import Vue from "vue";
 import VueRouter from "vue-router";
+import "babel-polyfill";
 
 import VueBus from 'vue-bus';
 
