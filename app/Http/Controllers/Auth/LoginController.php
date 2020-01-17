@@ -101,7 +101,6 @@ class LoginController extends Controller
      *
      *
      *
-
      */
     public function handleProviderCallback($driver)
     {
